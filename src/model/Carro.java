@@ -1,16 +1,7 @@
-
-/**
- * Classe Carro
- * 
- * @author (Maurício Pereira) 
- * @version (1.0)
- */
-
 import java.util.Map;
 import java.io.Serializable;
 
-public abstract class Carro implements Comparable<Carro>,Serializable
-{
+public abstract class Carro implements Comparable<Carro>,Serializable{
     //Variaveis de instancia
     private String idCarro;
     private String marca;
@@ -21,18 +12,10 @@ public abstract class Carro implements Comparable<Carro>,Serializable
     private int potenciaEletrica;
     private boolean serHibrido;
     private float fiabilidade;
-    private Class classe;
     private float pac;
-    public enum Class{
-        C1,
-        C2,
-        GT,
-        SC
-    }
     
     /* Construtores */
-    public Carro()
-    {
+    public Carro(){
         this.idCarro= "";
         this.marca = "";
         this.modelo = "";
@@ -40,14 +23,12 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.cilindrada = 0;
         this.potencia = 0;
         this.potenciaEletrica = 0;
-        this.serHibrido=false;
+        this.serHibrido = false;//mudei, de null para false porque dava erro
         this.fiabilidade = 0;
-        this.classe=null;
         this.pac = 0;
     }
     
-    public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade,Class classe, float pac)
-    {
+    public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade, float pac){
         this.idCarro= idCarro;
         this.marca = marca;
         this.modelo = modelo;
@@ -57,12 +38,10 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.potenciaEletrica = potenciaEletrica;
         this.serHibrido=serHibrido;
         this.fiabilidade = fiabilidade;
-        this.classe=classe;
         this.pac = pac;
     }
     
-    public Carro(Carro c)
-    {
+    public Carro(Carro c){
         this.idCarro= c.getIdCarro();
         this.marca = c.getMarca();
         this.modelo = c.getModelo();
@@ -72,57 +51,12 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.potenciaEletrica = c.getPotenciaEletrica();
         this.serHibrido=c.getSerHibrido();
         this.fiabilidade = c.getFiabilidade();
-        this.classe=c.getClasse();
         this.pac = c.getPac();
     }
     
     /* Gets e sets */
 
-    public String getMarca() {
-        return this.marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return this.modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public int getCilindrada() {
-        return this.cilindrada;
-    }
-
-    public void setCilindrada(int cilindrada) {
-        this.cilindrada = cilindrada;
-    }
-
-    public int getPotencia() {
-        return this.potencia;
-    }
-
-    public void setPotencia(int potencia) {
-        this.potencia = potencia;
-    }
-
-    public float getFiabilidade() {
-        return this.fiabilidade;
-    }
-
-
-    public Class getClasse() {
-        return this.classe;
-    }
-
-    public void setClasse(Class classe) {
-        this.classe = classe;
-    }
-
+    //id carro
     public String getIdCarro() {
         return this.idCarro;
     }
@@ -131,6 +65,50 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.idCarro = idCarro;
     }
 
+    //Marca
+    public String getMarca() {
+        return this.marca;
+    }
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+  
+
+    //Modelo
+    public String getModelo() {
+        return this.modelo;
+    }
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+
+   //Cilindrada
+   public int getCilindrada() {
+    return this.cilindrada;
+    }   
+    public void setClindrada(int cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
+    //Potencia
+      public int getPotencia() {
+        return this.potencia;
+    }
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
+    }
+
+    //PotenciaEletrica
+    public int getPotenciaEletrica() {
+        return this.potencia;
+    }
+    public void setPotenciaEletrica(int potenciaEletrica) {
+        this.potenciaEletrica = potenciaEletrica;
+    }
+
+    //modoMotor
     public String getModoMotor() {
         return this.modoMotor;
     }
@@ -139,14 +117,7 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.modoMotor = modoMotor;
     }
 
-    public int getPotenciaEletrica() {
-        return this.potenciaEletrica;
-    }
-
-    public void setPotenciaEletrica(int potenciaEletrica) {
-        this.potenciaEletrica = potenciaEletrica;
-    }
-
+    //ser hibrido
     public boolean isSerHibrido() {
         return this.serHibrido;
     }
@@ -154,28 +125,32 @@ public abstract class Carro implements Comparable<Carro>,Serializable
     public boolean getSerHibrido() {
         return this.serHibrido;
     }
-
     public void setSerHibrido(boolean serHibrido) {
         this.serHibrido = serHibrido;
     }
+
+    //fiabilidae
+    public float getFiabilidade() {
+        return this.fiabilidade;
+    }
     public void setFiabilidade(float fiabilidade) {
         this.fiabilidade = fiabilidade;
-    }
-
+    }   
+    //pac
     public float getPac() {
         return this.pac;
     }
-
     public void setPac(float pac) {
         this.pac = pac;
     }
 
 
+
     /* Metodos usuais */
     public abstract Carro clone();
     
-    public String toString()     
-    {
+    //toString
+    public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\nIdCarro: ");sb.append(this.idCarro);
         sb.append("\nMarca: ");sb.append(this.marca);
@@ -186,18 +161,19 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         sb.append("\nPotenciaEletrica: ");sb.append(this.potenciaEletrica);
         sb.append("\nHibrido: ");sb.append(this.serHibrido);
         sb.append("\nFiabiliade: ");sb.append(this.fiabilidade);
-        sb.append("\nClasse: ");sb.append(this.classe);
         sb.append("\nPac: ");sb.append(this.pac);
         return sb.toString();
     }
-    
-    public boolean equals(Object o)
-    {
+    //Equals
+    public boolean equals(Object o){
         if(this==o)
         return true;
         
-        if(o==null || this.getClass()!=o.getClass())
-        return false;
+        if(o==null || this.getClass()!=o.getClass()){
+            return false;
+        } 
+           
+
 
         
         Carro c = (Carro) o;
@@ -210,8 +186,8 @@ public abstract class Carro implements Comparable<Carro>,Serializable
                 this.potenciaEletrica == c.getPotenciaEletrica() &&
                 this.serHibrido == c.getSerHibrido() &&
                 this.fiabilidade == c.getFiabilidade() &&
-                this.classe == c.getClasse() &&
                 this.pac == c.getPac());
     }
+
 }
     
