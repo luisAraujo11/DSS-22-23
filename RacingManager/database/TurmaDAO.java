@@ -6,19 +6,11 @@
  */
 package uminho.dss.turmas3l.data;
 
-import uminho.dss.turmas3l.business.Aluno;
 import uminho.dss.turmas3l.business.Sala;
 import uminho.dss.turmas3l.business.Turma;
 
 import java.sql.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import static java.util.stream.Collectors.toList;
-
-import static java.util.stream.Collectors.*;
+import java.util.*;
 
 /**
  * Versão incompleta de um DAO para Turmas

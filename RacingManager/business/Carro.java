@@ -7,8 +7,7 @@ package RacingManager.business;
  * @version (1.0)
  */
 
- import java.util.Map;
- import java.io.Serializable;
+import java.io.Serializable;
  
  public abstract class Carro implements Comparable<Carro>,Serializable
  {
