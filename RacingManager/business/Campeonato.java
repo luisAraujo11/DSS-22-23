@@ -17,14 +17,14 @@ public class Campeonato implements Serializable
     }
 
     public Campeonato(String nome, List<Circuito> circuitos) {
-        this.nome = " ";
         this();
+        this.nome = " ";
         ArrayList<Circuito> aux= new ArrayList<Circuito>();
-        for(Circuito circuitos : circuitos)
+        for(Circuito cir : circuitos)
         {
-            aux.add(circuitos.clone());
+            aux.add(cir.clone());
         }
-        this.corridas = aux;
+        this.circuitos = aux;
     }
 
 
@@ -43,7 +43,7 @@ public class Campeonato implements Serializable
     }
 
 
-    public List<Corrida> getCircuitos()
+    public ArrayList<Circuito> getCircuitos()
     {
         ArrayList<Circuito> aux = new ArrayList<Circuito>();
         for(Circuito ci : this.circuitos)
@@ -58,9 +58,12 @@ public class Campeonato implements Serializable
         this.circuitos.add(c.clone());
     }
 
-    public Corrida getCircuito(int x)
+    public Circuito getCircuito(int x)
     {
         return this.circuitos.get(x-1).clone();
     }
 
+    public Campeonato clone(){
+        return new Campeonato(this);
+    }
 }
