@@ -23,12 +23,12 @@ public class CarroDAO implements Map<String, Carro> {
             String sql = "CREATE TABLE IF NOT EXISTS carro (" +
                     " idCarro varchar(10) NOT NULL PRIMARY KEY," +
                     "marca varchar(45) DEFAULT NULL," +
-                    "modelo varchar(45) DEFAULT NULL)" +
-                    "cilindrada int(4) DEFAULT 0" +
-                    "potencia int(4) DEFAULT 0" +
-                    "potenciaEletrica int(4) DEFAULT 0" +
-                    "serHibrido BIT(2)" +
-                    "pac FLOAT(2,2)";
+                    "modelo varchar(45) DEFAULT NULL," +
+                    "cilindrada int(4) DEFAULT 0," +
+                    "potencia int(4) DEFAULT 0," +
+                    "potenciaEletrica int(4) DEFAULT 0," +
+                    "serHibrido BIT(2)," +
+                    "pac FLOAT(2,2))";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...

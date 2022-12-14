@@ -100,5 +100,9 @@ public abstract class Jogador implements Comparable<Carro>,Serializable{
                 this.piloto.equals(j.getPiloto()));
     }
 
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
+    }
 }
     
