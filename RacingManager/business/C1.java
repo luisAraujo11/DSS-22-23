@@ -5,8 +5,8 @@ public class C1 extends Carro {
     public C1(){
         super();
     }
-    public C1(int potencia, int potenciaEletrica, boolean serHibrido, String modoMotor){
-        super(potencia,potenciaEletrica,serHibrido,modoMotor);
+    public C1(String idCarro, String marca, String modelo,String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade,Class classe, float pac){
+        super(idCarro,marca,modelo,modoMotor,cilindrada,potencia,0,false,0,null,0);
     }
 
     public C1(C1 c){
