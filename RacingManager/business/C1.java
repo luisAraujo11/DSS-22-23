@@ -1,6 +1,6 @@
 package RacingManager.business;
 
-public class C1{
+public class C1 extends Carro {
 
     public C1(){
         super();
@@ -20,5 +20,10 @@ public class C1{
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
     }
 }

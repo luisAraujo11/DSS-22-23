@@ -23,6 +23,8 @@ import java.io.Serializable;
      private float fiabilidade;
      private Class classe;
      private float pac;
+
+
      public enum Class{
          C1,
          C2,

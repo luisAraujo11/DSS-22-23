@@ -8,8 +8,8 @@ public class SC extends Carro
     {
         super();
     }
-    public SC (String idCarro, String marca, String modelo,String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido){
-        super(idCarro,marca,modelo,modoMotor,cilindrada,potencia,0,false);
+    public SC (String idCarro, String marca, String modelo,String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade,Class classe, float pac){
+        super(idCarro,marca,modelo,modoMotor,cilindrada,potencia,0,false,0,null,0);
     }
 
     public SC(SC p)
@@ -22,6 +22,7 @@ public class SC extends Carro
     {
         return new SC(this);
     }
+   /*
     public boolean DNF(int volta,int totalvoltas, int chuva)
     {
         Random rand=new Random();
@@ -42,7 +43,7 @@ public class SC extends Carro
         //System.out.println("Random: "+x);
         return (x > fiabilidade);
     }
-
+*/
     public boolean equals(Object o)
     {
         if(this==o)
