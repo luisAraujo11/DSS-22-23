@@ -1,7 +1,5 @@
 package RacingManager.business;
 
-import java.util.Random;
-
 public class SC extends Carro
 {
     public SC()

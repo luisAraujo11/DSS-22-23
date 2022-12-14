@@ -1,7 +1,5 @@
 package RacingManager.business;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.io.Serializable;
 
 public class Circuito implements Serializable {
