@@ -1,12 +1,5 @@
 package RacingManager.business;
 
-/**
- * Classe Carro
- * 
- * @author (Maurício Pereira) 
- * @version (1.0)
- */
-
 import java.io.Serializable;
  
  public abstract class Carro implements Comparable<Carro>,Serializable
@@ -18,7 +11,6 @@ import java.io.Serializable;
      private String modoMotor;
      private int cilindrada;
      private int potencia;
-     private int potenciaEletrica;
      private boolean serHibrido;
      private float fiabilidade;
      private Class classe;
@@ -41,14 +33,13 @@ import java.io.Serializable;
          this.modoMotor="";
          this.cilindrada = 0;
          this.potencia = 0;
-         this.potenciaEletrica = 0;
          this.serHibrido=false;
          this.fiabilidade = 0;
          this.classe=null;
          this.pac = 0;
      }
      
-     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade,Class classe, float pac)
+     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac)
      {
          this.idCarro= idCarro;
          this.marca = marca;
@@ -56,7 +47,6 @@ import java.io.Serializable;
          this.modoMotor=modoMotor;
          this.cilindrada = cilindrada;
          this.potencia = potencia;
-         this.potenciaEletrica = potenciaEletrica;
          this.serHibrido=serHibrido;
          this.fiabilidade = fiabilidade;
          this.classe=classe;
@@ -71,7 +61,6 @@ import java.io.Serializable;
          this.modoMotor=c.getModoMotor();
          this.cilindrada = c.getCilindrada();
          this.potencia = c.getPotencia();
-         this.potenciaEletrica = c.getPotenciaEletrica();
          this.serHibrido=c.getSerHibrido();
          this.fiabilidade = c.getFiabilidade();
          this.classe=c.getClasse();
@@ -141,14 +130,6 @@ import java.io.Serializable;
          this.modoMotor = modoMotor;
      }
  
-     public int getPotenciaEletrica() {
-         return this.potenciaEletrica;
-     }
- 
-     public void setPotenciaEletrica(int potenciaEletrica) {
-         this.potenciaEletrica = potenciaEletrica;
-     }
- 
      public boolean isSerHibrido() {
          return this.serHibrido;
      }
@@ -185,7 +166,6 @@ import java.io.Serializable;
          sb.append("\nModoMotor: ");sb.append(this.modoMotor);
          sb.append("\nCilindrada: ");sb.append(this.cilindrada);
          sb.append("\nPotencia: ");sb.append(this.potencia);
-         sb.append("\nPotenciaEletrica: ");sb.append(this.potenciaEletrica);
          sb.append("\nHibrido: ");sb.append(this.serHibrido);
          sb.append("\nFiabiliade: ");sb.append(this.fiabilidade);
          sb.append("\nClasse: ");sb.append(this.classe);
@@ -209,7 +189,6 @@ import java.io.Serializable;
                  this.modoMotor.equals(c.getModoMotor()) &&
                  this.cilindrada == c.getCilindrada() &&
                  this.potencia == c.getPotencia() &&
-                 this.potenciaEletrica == c.getPotenciaEletrica() &&
                  this.serHibrido == c.getSerHibrido() &&
                  this.fiabilidade == c.getFiabilidade() &&
                  this.classe == c.getClasse() &&

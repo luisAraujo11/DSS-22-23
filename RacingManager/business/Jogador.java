@@ -2,7 +2,7 @@ package RacingManager.business;
 
 import java.io.Serializable;
 
-public abstract class Jogador implements Comparable<Carro>,Serializable{
+public class Jogador implements Comparable<Jogador>,Serializable{
     //Variaveis de instancia
     private String registo;
     private int pontuacao;
@@ -70,7 +70,9 @@ public abstract class Jogador implements Comparable<Carro>,Serializable{
     }
 
     /* Metodos usuais */
-    public abstract Jogador clone();
+    public Jogador clone(){
+        return new Jogador(this);
+    }
     
     //toString
     public String toString(){
@@ -100,8 +102,9 @@ public abstract class Jogador implements Comparable<Carro>,Serializable{
                 this.piloto.equals(j.getPiloto()));
     }
 
+
     @Override
-    public int compareTo(Carro o) {
+    public int compareTo(Jogador o) {
         return 0;
     }
 }

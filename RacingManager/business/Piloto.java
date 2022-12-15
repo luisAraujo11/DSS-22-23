@@ -1,12 +1,5 @@
 package RacingManager.business;
 
- /**
- * Classe Piloto
- * 
- * @author (Maurício Pereira) 
- * @version (1.0)
- */
-
 import java.io.Serializable;
 
 public class Piloto implements Serializable

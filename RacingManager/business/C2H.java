@@ -10,13 +10,13 @@ public class C2H extends C2 implements Hibrido{
     }
 
     public C2H(String idCarro, String marca, String modelo,String modoMotor, int cilindrada, int potencia, int potenciaEletrica, boolean serHibrido, float fiabilidade,Class classe, float pac){
-        super(idCarro,marca,modelo,modoMotor,cilindrada,potencia,potenciaEletrica,serHibrido,fiabilidade,classe,pac);
+        super(idCarro,marca,modelo,modoMotor,cilindrada,potencia,serHibrido,fiabilidade,classe,pac);
         this.potenciaEletrica = potenciaEletrica;
     }
 
     public C2H(C2H c){
         super(c);
-        this.potenciaEletrica = c.getPotenciaEletrica();
+        this.potenciaEletrica = c.getPotenciaMotorEletrico();
     }
 
     public C2H clone(){
@@ -24,12 +24,12 @@ public class C2H extends C2 implements Hibrido{
     }
     @Override
     public int getPotenciaMotorEletrico() {
-        return 0;
+        return this.potenciaEletrica;
     }
 
     @Override
     public void setPotenciaMotorEletrico(int potencia) {
-
+        this.potenciaEletrica=potencia;
     }
 }
 

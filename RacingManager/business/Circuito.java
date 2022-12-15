@@ -32,7 +32,7 @@ public class Circuito implements Serializable {
         this.curvas = curvas;
         this.chicane = chicane;
         this.voltas = voltas;
-        this.gdu = gdu;
+        this.gdu= gdu;
     }
 
     public Circuito(Circuito c) {
