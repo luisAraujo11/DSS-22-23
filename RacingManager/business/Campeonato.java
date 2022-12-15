@@ -10,15 +10,14 @@ public class Campeonato implements Serializable
     private String nome;
     private List<Circuito> circuitos;
 
-    public Campeonato()
+    public Campeonato(String nomeCamp)
     {
         this.nome="";
         this.circuitos = new ArrayList<Circuito>();
     }
 
     public Campeonato(String nome, List<Circuito> circuitos) {
-        this();
-        this.nome = " ";
+        this.nome = "";
         ArrayList<Circuito> aux= new ArrayList<Circuito>();
         for(Circuito cir : circuitos)
         {
@@ -42,6 +41,14 @@ public class Campeonato implements Serializable
         this.nome = nome;
     }
 
+
+    @Override
+    public String toString() {
+        return "Campeonato{" +
+                "nome='" + nome + '\'' +
+                ", circuitos=" + circuitos +
+                '}';
+    }
 
     public ArrayList<Circuito> getCircuitos()
     {
