@@ -2,7 +2,7 @@ package RacingManager.business;
 
 import java.io.Serializable;
 
-public abstract class Piloto implements Serializable
+public class Piloto implements Serializable
 {
     //Variaveis de instancia
     private String nome;
@@ -97,5 +97,5 @@ public abstract class Piloto implements Serializable
                 this.sva==p.getSva());
     }
 
-    public abstract boolean DNF(int volta,int totalvoltas,Meteorologia meteorologia);
+    //public abstract boolean DNF(int volta,int totalvoltas,Meteorologia meteorologia);
 }

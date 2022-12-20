@@ -21,13 +21,13 @@ public class Meteorologia implements Serializable{
     }
 
     public Meteorologia(Meteorologia m) {
-        this.precipitacao=m.getPrecipitacao;
-        this.temperatura=m.getTemperatura;
-        this.idMeteorologia=m.getIdMeteorologia;
+        this.precipitacao=m.getPrecipitacao();
+        this.temperatura=m.getTemperatura();
+        this.idMeteorologia=m.getIdMeteorologia();
 
     }
 
-    public Meteorologia(String precipitacao, int temperatura, in idMeteorologia) {
+    public Meteorologia(String precipitacao, int temperatura, int idMeteorologia) {
         this.precipitacao = precipitacao;
         this.temperatura = temperatura;
         this.idMeteorologia = idMeteorologia;
@@ -49,15 +49,13 @@ public class Meteorologia implements Serializable{
         this.temperatura = temperatura;
     }
 
-    public in getIdMeteorologia() {
+    public int getIdMeteorologia() {
         return this.idMeteorologia;
     }
 
-    public void setIdMeteorologia(in idMeteorologia) {
+    public void setIdMeteorologia(int idMeteorologia) {
         this.idMeteorologia = idMeteorologia;
     }
-
-    public abstract Meteorologia clone();
 
     public String toString()     
      {
@@ -77,9 +75,9 @@ public class Meteorologia implements Serializable{
          return false;
  
          
-         Meteorologia m = (Meteorologia) m;
-         return( this.precipitacao == m.getPrecipitacao() &&
-                 this.temperatura == m.getTemperatura() &&
-                 this.idMeteorologia == m.getIdMeteorologia());
+        Meteorologia m = (Meteorologia) o;
+        return( this.precipitacao == m.getPrecipitacao() &&
+                this.temperatura == m.getTemperatura() &&
+                this.idMeteorologia == m.getIdMeteorologia());
      }
 }

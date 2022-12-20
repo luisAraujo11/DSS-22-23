@@ -86,7 +86,7 @@ public class Corrida implements Serializable{
     public void setDnf(Map<Piloto, Boolean> dnf) {
         this.dnf = dnf;
     }
-
+/* 
     public void simulaCorrida()
     {
         int voltas = this.circuito.getVoltas();
@@ -148,4 +148,6 @@ public class Corrida implements Serializable{
         }
         this.dnf = temp;
     }
+
+*/
 }

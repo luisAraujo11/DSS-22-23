@@ -17,10 +17,9 @@ public class CorridaFacade implements ICorridaFacade{
     public Collection <Corrida> getCampeonatos(){
         return corridas.values();
     }
-
     @Override
     public void adcionaCampeonato(Corrida c){
-        this.corridas.put(c.getCorrida(),c);
+        this.corridas.put(c.getIdCorrida(),c);
     }
 
     @Override

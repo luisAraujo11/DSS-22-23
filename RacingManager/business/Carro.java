@@ -2,7 +2,7 @@ package RacingManager.business;
 
 import java.io.Serializable;
  
- public class Carro implements Comparable<Carro>,Serializable
+ public abstract class Carro implements Comparable<Carro>,Serializable
  {
      //Variaveis de instancia
      private String idCarro;
