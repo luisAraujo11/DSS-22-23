@@ -57,7 +57,7 @@ public class Jogador implements Comparable<Jogador>,Serializable{
     }
 
     public void setCarro(Carro Carro){
-        this.carro = carro;
+        this.carro = Carro;
     }
 
     //Piloto
