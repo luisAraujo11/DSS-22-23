@@ -2,10 +2,11 @@ package RacingManager.business;
 
 import java.io.Serializable;
 
-public class Piloto implements Serializable
+public abstract class Piloto implements Serializable
 {
     //Variaveis de instancia
     private String nome;
+    private boolean dnf;
     private float cts;
     private float sva;
     
@@ -17,8 +18,9 @@ public class Piloto implements Serializable
         this.sva = 0;
     }
 
-    public Piloto(String nome, float cts, float sva) {
+    public Piloto(String nome,boolean dnf, float cts, float sva) {
         this.nome = nome;
+        this.dnf=dnf;
         this.cts = cts;
         this.sva = sva;
     }    
@@ -26,10 +28,19 @@ public class Piloto implements Serializable
     public Piloto(Piloto p)
     {
         this.nome = p.getNome();
+        this.dnf=p.getDnf();
         this.cts = p.getCts();
         this.sva = p.getSva();
     }
 
+
+    public boolean getDnf() {
+        return this.dnf;
+    }
+
+    public void setDnf(boolean dnf) {
+        this.dnf = dnf;
+    }
 
     public String getNome() {
         return this.nome;
@@ -60,6 +71,7 @@ public class Piloto implements Serializable
     {
         StringBuilder sb = new StringBuilder();
         sb.append("\nNome: "); sb.append(this.nome);
+        sb.append("\nDNF "); sb.append(this.dnf);
         sb.append("\tCTS: ");sb.append(this.cts);
         sb.append("\tSVA: ");sb.append(this.sva);
         return sb.toString();
@@ -79,8 +91,11 @@ public class Piloto implements Serializable
         return false;
         
         Piloto p = (Piloto) o;
-        return (this.nome.equals(p.getNome()) && 
+        return (this.nome.equals(p.getNome()) &&
+                this.dnf== p.getDnf() && 
                 this.cts==p.getCts() &&
                 this.sva==p.getSva());
     }
+
+    public abstract boolean DNF(int volta,int totalvoltas,Meteorologia meteorologia);
 }

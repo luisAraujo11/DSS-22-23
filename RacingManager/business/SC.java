@@ -27,9 +27,9 @@ public class SC extends Carro
         int x=rand.nextInt(73);
         Piloto p = null;
         if(volta<totalvoltas/2)
-            p = super.getEquipa().getPiloto1();
+            p = super.getPiloto1();
         else
-            p = super.getEquipa().getPiloto2();
+            p = super.getPiloto2();
         int qualidade;
         if(chuva == 1)
             qualidade = p.getQualidadeChuva();
