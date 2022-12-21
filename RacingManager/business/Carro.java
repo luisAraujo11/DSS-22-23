@@ -15,6 +15,7 @@ import java.io.Serializable;
      private float fiabilidade;
      private Class classe;
      private float pac;
+     private Equipa equipa;
 
 
      public enum Class{
@@ -37,9 +38,10 @@ import java.io.Serializable;
          this.fiabilidade = 0;
          this.classe=null;
          this.pac = 0;
+         this.equipa=new Equipa();
      }
      
-     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac)
+     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac,Equipa e)
      {
          this.idCarro= idCarro;
          this.marca = marca;
@@ -51,6 +53,8 @@ import java.io.Serializable;
          this.fiabilidade = fiabilidade;
          this.classe=classe;
          this.pac = pac;
+         this.equipa=e.clone();
+
      }
      
      public Carro(Carro c)
@@ -65,9 +69,18 @@ import java.io.Serializable;
          this.fiabilidade = c.getFiabilidade();
          this.classe=c.getClasse();
          this.pac = c.getPac();
+         this.equipa=c.getEquipa();
      }
      
      /* Gets e sets */
+
+    public Equipa getEquipa() {
+        return this.equipa.clone();
+    }
+
+    public void setEquipa(Equipa equipa) {
+        this.equipa = equipa.clone();
+    }
  
      public String getMarca() {
          return this.marca;
@@ -167,6 +180,7 @@ import java.io.Serializable;
          sb.append("\nFiabiliade: ");sb.append(this.fiabilidade);
          sb.append("\nClasse: ");sb.append(this.classe);
          sb.append("\nPac: ");sb.append(this.pac);
+         sb.append("\nEquipa ");sb.append(this.equipa);
          return sb.toString();
      }
      
@@ -189,7 +203,8 @@ import java.io.Serializable;
                  this.serHibrido == c.getSerHibrido() &&
                  this.fiabilidade == c.getFiabilidade() &&
                  this.classe == c.getClasse() &&
-                 this.pac == c.getPac());
+                 this.pac == c.getPac() &&
+                 this.equipa.equals(c.getEquipa()));
      }
  }
      

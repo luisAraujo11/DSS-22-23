@@ -1,20 +1,15 @@
 package RacingManager.business;
 
-
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.io.Serializable;
 
 public class Meteorologia implements Serializable{
-    private String precipitacao;
+    private int precipitacao;
     private int temperatura;
     private int idMeteorologia;
 
 
     public Meteorologia() {
-        this.precipitacao="";
+        this.precipitacao=0;
         this.temperatura=0;
         this.idMeteorologia=0;
 
@@ -27,17 +22,17 @@ public class Meteorologia implements Serializable{
 
     }
 
-    public Meteorologia(String precipitacao, int temperatura, int idMeteorologia) {
+    public Meteorologia(int precipitacao, int temperatura, int idMeteorologia) {
         this.precipitacao = precipitacao;
         this.temperatura = temperatura;
         this.idMeteorologia = idMeteorologia;
     }
 
-    public String getPrecipitacao() {
+    public int getPrecipitacao() {
         return this.precipitacao;
     }
 
-    public void setPrecipitacao(String precipitacao) {
+    public void setPrecipitacao(int precipitacao) {
         this.precipitacao = precipitacao;
     }
 
