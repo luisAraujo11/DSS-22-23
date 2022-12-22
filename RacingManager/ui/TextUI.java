@@ -62,7 +62,6 @@ public class TextUI {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
             if (!this.model.existeCampeonato(nomeCamp)) {
-                scin.nextLine();    // Limpar o buffer depois de ler o inteiro
                 this.model.adicionaCampeonato(new Campeonato(nomeCamp));
                 System.out.println("Campeonato adicionado");
             } else {

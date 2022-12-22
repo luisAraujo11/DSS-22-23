@@ -12,12 +12,12 @@ public class Campeonato implements Serializable
 
     public Campeonato(String nomeCamp)
     {
-        this.nome="";
+        this.nome=nomeCamp;
         this.circuitos = new ArrayList<Circuito>();
     }
 
     public Campeonato(String nome, List<Circuito> circuitos) {
-        this.nome = "";
+        this.nome = nome;
         ArrayList<Circuito> aux= new ArrayList<Circuito>();
         for(Circuito cir : circuitos)
         {

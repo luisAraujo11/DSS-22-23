@@ -10,7 +10,7 @@ public class DAOconfig {
 
     public static final String USERNAME = "root";
     public static final String PASSWORD = "12345678";
-    private static final String DATABASE = "mysql";
+    private static final String DATABASE = "mydb";
     private static final String DRIVER = "jdbc:mysql";
     static final String URL = DRIVER+"://localhost:3306/"+DATABASE;
 }

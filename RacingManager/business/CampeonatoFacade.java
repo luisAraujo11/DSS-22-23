@@ -2,6 +2,7 @@ package RacingManager.business;
 
 import RacingManager.database.CampeonatoDAO;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CampeonatoFacade implements ICampeonatoFacade{
@@ -10,6 +11,7 @@ public class CampeonatoFacade implements ICampeonatoFacade{
 
     public CampeonatoFacade(){
         this.campeonatos = CampeonatoDAO.getInstance();
+        this.campeonatos = new HashMap<>();
     }
 
 
