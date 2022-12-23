@@ -15,6 +15,9 @@ public class C1 extends Carro {
         super(c);
     }
 
+    @Override
+    public String toString() {return super.toString();}
+
     public C1 clone(){
         return new C1(this);
     }
@@ -28,7 +31,9 @@ public class C1 extends Carro {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if(this == obj) return true;
+        if(obj == null || obj.getClass() != this.getClass()) return false;
+        return (super.equals(obj));
     }
 
     @Override
