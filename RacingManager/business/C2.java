@@ -3,7 +3,7 @@ package RacingManager.business;
 import java.util.Random;
 public class C2 extends Carro {
 
-    private int afinação;
+    private float afinação;
 
     public C2(){
         super();
@@ -18,12 +18,14 @@ public class C2 extends Carro {
         this.afinação=getAfinação();
     }
 
-    public int getAfinação() {
+    public float getAfinação() {
         return this.afinação;
     }
 
-    public void setAfinação(int afinação) {
-        this.afinação = afinação;
+    public void setAfinação(float val_afinação) {
+        if(val_afinação < 0f) this.afinação = 0f;
+        if(val_afinação > 1f) this.afinação = 1f;
+        else this.afinação = val_afinação;
     }
 
     public C2 clone(){
@@ -37,10 +39,16 @@ public class C2 extends Carro {
        float fiabilidade = super.getFiabilidade() + (super.getCilindrada()/1200) + (this.afinação/10);
        return (x > fiabilidade);
     }
-    
+    @Override
+    public String toString()
+    {
+        return (super.toString() + "Afinacao: " + this.afinação + "\n");
+    }
 
     @Override
     public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
         return super.equals(obj);
     }
 
