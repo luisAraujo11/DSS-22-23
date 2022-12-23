@@ -15,6 +15,7 @@ import java.io.Serializable;
      private float fiabilidade;
      private Class classe;
      private float pac;
+     private tipoPneu pneus;
      private Equipa equipa;
 
 
