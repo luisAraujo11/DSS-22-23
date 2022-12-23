@@ -1,6 +1,8 @@
 package RacingManager.business;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Circuito implements Serializable {
 
@@ -10,6 +12,17 @@ public class Circuito implements Serializable {
     private int chicane;
     private int voltas;
     private GDU gdu;
+    private Record record;
+
+    public Map<String, Long> getTemposMedios() {
+        HashMap<String,Long> aux = new HashMap<String, Long>();
+        return aux;
+    }
+
+    public long getTempoDesvio() {
+        return 1;
+    }
+
     public enum GDU{
         Dificl,
         Possivel,
@@ -23,16 +36,18 @@ public class Circuito implements Serializable {
         this.chicane=0;
         this.voltas=0;
         this.gdu=null;
+        this.record = null;
 
     }
 
-    public Circuito(String nome, int distancia, int curvas, int chicane, int voltas, GDU gdu) {
+    public Circuito(String nome, int distancia, int curvas, int chicane, int voltas, GDU gdu, Record r) {
         this.nome = nome;
         this.distancia = distancia;
         this.curvas = curvas;
         this.chicane = chicane;
         this.voltas = voltas;
         this.gdu= gdu;
+        this.record = r.clone();
     }
 
     public Circuito(Circuito c) {
@@ -42,9 +57,12 @@ public class Circuito implements Serializable {
         this.chicane=c.getChicane();
         this.voltas=c.getVoltas();
         this.gdu=c.getGdu();
+        this.record=c.getRecord();
 
     }
 
+    public Record getRecord() { return this.record.clone(); }
+    public void setRecord(Record r) { this.record = r.clone(); }
     public String getNome() {
         return nome;
     }

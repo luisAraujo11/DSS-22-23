@@ -184,15 +184,10 @@ import java.io.Serializable;
          return sb.toString();
      }
      
-     public boolean equals(Object o)
-     {
-         if(this==o)
-         return true;
-         
-         if(o==null || this.getClass()!=o.getClass())
-         return false;
- 
-         
+     public boolean equals(Object o) {
+         if(this==o) return true;
+         if(o==null || this.getClass()!=o.getClass()) return false;
+
          Carro c = (Carro) o;
          return( this.idCarro.equals(c.getIdCarro()) &&
                  this.marca.equals(c.getMarca()) &&
@@ -206,5 +201,16 @@ import java.io.Serializable;
                  this.pac == c.getPac() &&
                  this.equipa.equals(c.getEquipa()));
      }
+
+     public Carro clone()
+     {
+         return new Carro(this) {
+             @Override
+             public int compareTo(Carro o) {
+                 return 0;
+             }
+         };
+     }
+
  }
      
