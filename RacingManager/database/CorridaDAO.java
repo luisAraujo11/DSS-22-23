@@ -19,8 +19,7 @@ public class CorridaDAO implements Map<String, Corrida> {
             String sql = "CREATE TABLE IF NOT EXISTS campeonato (" +
                     "registo varchar(10) NOT NULL PRIMARY KEY," +
                     "pontuação int(4) DEFAULT 0," +
-                    "CarroId varchar(10)," +
-                    "foreign key (CarroId) references carro(IDCarro))";
+                    "CarroId varchar(10))";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...

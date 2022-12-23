@@ -6,10 +6,7 @@
  */
 package RacingManager.ui;
 
-import RacingManager.business.Campeonato;
-import RacingManager.business.CampeonatoFacade;
-import RacingManager.business.Circuito;
-import RacingManager.business.ICampeonatoFacade;
+import RacingManager.business.*;
 
 import java.util.Scanner;
 
@@ -22,6 +19,8 @@ import java.util.Scanner;
 public class TextUI {
     // O model tem a 'lógica de negócio'.
     private ICampeonatoFacade model;
+    private ICorridaFacade model1;
+    private IJogadorFacade model2;
 
     // Menus da aplicação
     private Menu menu;
@@ -44,6 +43,8 @@ public class TextUI {
         this.menu.setHandler(2, this::trataListarCampeonatos);
 
         this.model = new CampeonatoFacade();
+        this.model1 = new CorridaFacade();
+        this.model2 = new JogadorFacade();
         scin = new Scanner(System.in);
     }
 
