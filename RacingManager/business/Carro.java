@@ -17,7 +17,7 @@ import java.io.Serializable;
      private float pac;
      private tipoPneu pneus;
      private Equipa equipa;
-
+    	private float downforce;
 
      public enum Class{
          C1,
