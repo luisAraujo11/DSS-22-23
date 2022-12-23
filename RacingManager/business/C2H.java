@@ -25,6 +25,12 @@ public class C2H extends C2 implements Hibrido{
         return new C2H(this);
     }
 
+    @Override
+    public String toString() {
+        String s =  super.toString();
+        return(s + "Motor Eletrico: " + this.getPotenciaMotorEletrico() + "\n" );
+    }
+
     public boolean DNF(int volta,int totalvoltas,Meteorologia meteo)
     {
        Random rand=new Random();
@@ -43,5 +49,17 @@ public class C2H extends C2 implements Hibrido{
     public void setPotenciaMotorEletrico(int potencia) {
         this.potenciaEletrica=potencia;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o)
+            return true;
+        if(o == null || o.getClass() != this.getClass())
+            return false;
+        C2H c = (C2H) o;
+        return (c.getPotenciaMotorEletrico() == this.getPotenciaMotorEletrico() && super.equals(o));
+    }
+
+
 }
 
