@@ -19,6 +19,9 @@ import java.io.Serializable;
      private Equipa equipa;
      private float downforce;
 
+     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia, boolean b, int i, Object o, int i1, Equipa e) {
+     }
+
      public enum Class{
          C1,
          C2,
@@ -44,7 +47,7 @@ import java.io.Serializable;
          this.equipa=new Equipa();
      }
      
-     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac,Equipa e, tipoPneu os_pneus, float a_downforce, tipoPneu os_pneus, float a_downforce)
+     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac,Equipa e, tipoPneu os_pneus, float a_downforce)
      {
          this.idCarro= idCarro;
          this.marca = marca;
