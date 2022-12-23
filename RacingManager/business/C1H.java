@@ -24,12 +24,29 @@ public class C1H extends C1 implements Hibrido{
         return new C1H(this);
     }
 
+    @Override
+    public String toString()
+    {
+        String s =  super.toString();
+        return(s + "Motor Eletrico: " + this.getPotenciaMotorEletrico()+ "\n" );
+    }
+
     public boolean DNF(int volta,int totalvoltas,Meteorologia meteo)
     {
        Random rand=new Random();
        int x=rand.nextInt(87);
        int motorh = this.getPotenciaMotorEletrico()/20;
        return (x > (super.getFiabilidade()-motorh));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o)
+            return true;
+        if(o == null || o.getClass() != this.getClass())
+            return false;
+        C1H c = (C1H) o;
+        return (c.getPotenciaMotorEletrico() == this.getPotenciaMotorEletrico() && super.equals(o));
     }
 
     @Override
