@@ -1,8 +1,6 @@
 package RacingManager.business;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Piloto implements Serializable
@@ -13,8 +11,6 @@ public class Piloto implements Serializable
     private float cts;
     private float sva;
     private long tempo;
-    private final Piloto p1;
-    private final Piloto p2;
     
     //Construtores
     public Piloto()
@@ -23,8 +19,6 @@ public class Piloto implements Serializable
         this.cts = 0;
         this.sva = 0;
         this.tempo = 0;
-        this.p1 = new Piloto();
-        this.p2 = new Piloto();
     }
 
     public Piloto(String nome,boolean dnf, float cts, float sva, long tempo, Piloto p1, Piloto p2) {
@@ -33,8 +27,6 @@ public class Piloto implements Serializable
         this.cts = cts;
         this.sva = sva;
         this.tempo = tempo;
-        this.p1 = p1.clone();
-        this.p2 = p2.clone();
     }    
     
     public Piloto(Piloto p)
@@ -44,8 +36,6 @@ public class Piloto implements Serializable
         this.cts = p.getCts();
         this.sva = p.getSva();
         this.tempo = p.getTempo();
-        this.p1 = p.getPiloto1();
-        this.p2 = p.getPiloto2();
     }
 
 
@@ -89,20 +79,8 @@ public class Piloto implements Serializable
         this.sva = sva;
     }
 
-    public Piloto getPiloto1()
-    {
-        return this.p1.clone();
-    }
-
-    public Piloto getPiloto2()
-    {
-        return this.p2.clone();
-    }
-
 
     public long tempoProximaVolta(Circuito c, int clima, int volta) {
-        Piloto p1 = this.getPiloto1();
-        Piloto p2 = this.getPiloto2();
         Carro carro = new Carro() {
             @Override
             public int compareTo(Carro o) {

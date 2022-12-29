@@ -7,7 +7,6 @@ package RacingManager.business;
  */
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;

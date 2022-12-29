@@ -78,11 +78,20 @@ import java.io.Serializable;
          this.classe=c.getClasse();
          this.pac = c.getPac();
          this.pneus = c.getPneus();
+         this.downforce=getDownforce();
          this.equipa=c.getEquipa();
      }
      
      /* Gets e sets */
 
+    public float getDownforce() {
+        return this.downforce;
+    }
+
+    public void setDownforce(float downforce) {
+        this.downforce = downforce;
+    }
+    
     public Equipa getEquipa() {
         return this.equipa.clone();
     }
@@ -192,6 +201,8 @@ import java.io.Serializable;
          sb.append("\nFiabiliade: ");sb.append(this.fiabilidade);
          sb.append("\nClasse: ");sb.append(this.classe);
          sb.append("\nPac: ");sb.append(this.pac);
+         sb.append("\nPneus: ");sb.append(this.pneus);
+         sb.append("\nDownForce: ");sb.append(this.downforce);
          sb.append("\nEquipa ");sb.append(this.equipa);
          return sb.toString();
      }
@@ -211,6 +222,8 @@ import java.io.Serializable;
                  this.fiabilidade == c.getFiabilidade() &&
                  this.classe == c.getClasse() &&
                  this.pac == c.getPac() &&
+                 this.pneus.equals(c.getPneus()) &&
+                 this.downforce == c.getDownforce() &&
                  this.equipa.equals(c.getEquipa()));
      }
 

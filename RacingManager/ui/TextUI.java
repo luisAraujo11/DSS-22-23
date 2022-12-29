@@ -36,11 +36,11 @@ public class TextUI {
     public TextUI() {
         // Criar o menu
         this.menu = new Menu(new String[]{
-                "Adicionar Campeonato",
-                "Listar Campeonatos",
+                "Começar um campeonato",
+                "Listar Campeonatos"
         });
-        this.menu.setHandler(1, this::trataAdicionarCampeonato);
-        this.menu.setHandler(2, this::trataListarCampeonatos);
+        this.menu.setHandler(1, this::startChamp);
+        this.menu.setHandler(2, this::ListChamp);
 
         this.model = new CampeonatoFacade();
         this.model1 = new CorridaFacade();
@@ -57,7 +57,7 @@ public class TextUI {
     }
 
     // Métodos auxiliares
-    private void trataAdicionarCampeonato() {
+    private void startChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
             System.out.println("Nome do campeonato: ");
@@ -73,7 +73,7 @@ public class TextUI {
         }
     }
 
-    private void trataListarCampeonatos() {
+    private void ListChamp() {
         try {
             System.out.println(this.model.getCampeonatos().toString());
         }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class Corrida implements Serializable{
 
+
     private String idCorrida;
     private Circuito circuito;
     private List<Piloto> listaPilotos;
@@ -117,10 +118,10 @@ public class Corrida implements Serializable{
                             //atualizar record
                             if (this.circuito.getRecord().getTempo() > t_volta) {
                                 if (i < (this.circuito.getVoltas() / 2)) {
-                                    Record r = new Record(t_volta, p.getPiloto1(), c.clone());
+                                    Record r = new Record(t_volta, c.getEquipa().getPiloto1(), c.clone());
                                     this.circuito.setRecord(r);
                                 } else {
-                                    Record r = new Record(t_volta, p.getPiloto2(), c.clone());
+                                    Record r = new Record(t_volta, c.getEquipa().getPiloto2(), c.clone());
                                     this.circuito.setRecord(r);
                                 }
                             }
