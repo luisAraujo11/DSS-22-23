@@ -8,4 +8,8 @@ public interface ICampeonatoFacade {
     boolean existeCampeonato(String nomeCamp);
 
     Collection<Campeonato> getCampeonatos();
+
+    public Campeonato getCampeonato(String nome);
+
+    public Campeonato getCampeonato2(String nomeCamp);
 }

@@ -36,9 +36,11 @@ public class TextUI {
     public TextUI() {
         // Criar o menu
         this.menu = new Menu(new String[]{
+                //"Adicionar um campeonato",
                 "Começar um campeonato",
                 "Listar Campeonatos"
         });
+        //this.menu.setHandler(1, this::addChamp);
         this.menu.setHandler(1, this::startChamp);
         this.menu.setHandler(2, this::ListChamp);
 
@@ -57,13 +59,30 @@ public class TextUI {
     }
 
     // Métodos auxiliares
-    private void startChamp() {
+    private void addChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
             if (!this.model.existeCampeonato(nomeCamp)) {
                 this.model.adicionaCampeonato(new Campeonato(nomeCamp));
+                System.out.println("Campeonato adicionado");
+            } else {
+                System.out.println("O nome do campeonato ja existe");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void startChamp() {
+        //Scanner scin = new Scanner(System.in);
+        try {
+            System.out.println("Nome do campeonato: ");
+            String nomeCamp = scin.nextLine();
+            if (this.model.getCampeonato(nomeCamp) != null) {
+
                 System.out.println("Campeonato adicionado");
             } else {
                 System.out.println("Esse número de turma já existe!");
