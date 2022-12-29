@@ -1,11 +1,11 @@
 package RacingManager.business;
 
-public enum tipoPneu{
+public enum TipoPneu{
 MACIO,
 DURO,
 CHUVA,
 NULL;
-    public static tipoPneu fromString(String str){
+    public static TipoPneu fromString(String str){
 	 switch (str){
 		case("macio"):
 			return MACIO;
@@ -17,7 +17,7 @@ NULL;
 			return NULL;	
 		}
     }
-	public static String toStr(tipoPneu pneus)
+	public static String toStr(TipoPneu pneus)
 	{
 	 switch(pneus){
 		case MACIO:

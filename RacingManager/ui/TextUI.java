@@ -8,6 +8,8 @@ package RacingManager.ui;
 
 import RacingManager.business.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -47,6 +49,7 @@ public class TextUI {
         this.model = new CampeonatoFacade();
         this.model1 = new CorridaFacade();
         this.model2 = new JogadorFacade();
+
         scin = new Scanner(System.in);
     }
 
@@ -81,8 +84,16 @@ public class TextUI {
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
-            if (this.model.getCampeonato(nomeCamp) != null) {
-
+            if (this.model.existeCampeonato(nomeCamp)) {
+                Campeonato champ= this.model.getCampeonato(nomeCamp);
+                ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
+                ArrayList<Corrida> corridasFiltradas = new ArrayList<Corrida>();
+                for(Circuito c : circuitos){
+                    if(this.model1.getCorrida(c)!=null) corridasFiltradas.add(this.model1.getCorrida(c));
+                }
+                for(Corrida c : corridasFiltradas){
+                    c.simulaCorrida();
+                }
                 System.out.println("Campeonato adicionado");
             } else {
                 System.out.println("Esse número de turma já existe!");

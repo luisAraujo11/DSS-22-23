@@ -1,6 +1,7 @@
 package RacingManager.business;
 
 import java.util.Collection;
+import java.util.ArrayList;
 
 public interface ICampeonatoFacade {
     void adicionaCampeonato(Campeonato c);
@@ -12,4 +13,6 @@ public interface ICampeonatoFacade {
     public Campeonato getCampeonato(String nome);
 
     public Campeonato getCampeonato2(String nomeCamp);
+
+    public ArrayList<Circuito> getCircuitos(Campeonato champ);
 }

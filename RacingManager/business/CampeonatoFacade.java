@@ -1,10 +1,9 @@
 package RacingManager.business;
 
 import RacingManager.database.CampeonatoDAO;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CampeonatoFacade implements ICampeonatoFacade{
@@ -50,7 +49,9 @@ public class CampeonatoFacade implements ICampeonatoFacade{
         return campeonatos.containsKey(nomeCamp);
     }
 
-
+    public ArrayList<Circuito> getCircuitos(Campeonato champ){
+        return champ.getCircuitos();
+    }
 
 }
 

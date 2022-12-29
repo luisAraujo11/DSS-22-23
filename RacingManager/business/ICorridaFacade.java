@@ -1,12 +1,12 @@
 package RacingManager.business;
 
-import java.util.Collection;
+import java.util.*;
 
 public interface ICorridaFacade {
 
-    public Collection<Corrida> getCampeonatos();
-
-    public void adcionaCampeonato(Corrida c);
+    public void adcionaCorrida(Corrida c);
 
     public boolean existeCorrida(String idCorrida);
+
+    public Corrida getCorrida(Circuito cir);
 }
