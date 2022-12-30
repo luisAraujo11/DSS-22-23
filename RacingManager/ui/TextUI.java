@@ -67,7 +67,7 @@ public class TextUI {
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
-            if (!this.model.existeCampeonato(nomeCamp)) {
+            if (!this.model.validaCampeonato(nomeCamp)) {
                 this.model.adicionaCampeonato(new Campeonato(nomeCamp));
                 System.out.println("Campeonato adicionado");
             } else {
@@ -84,7 +84,7 @@ public class TextUI {
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
-            if (this.model.existeCampeonato(nomeCamp)) {
+            if (this.model.validaCampeonato(nomeCamp)) {
                 Campeonato champ= this.model.getCampeonato(nomeCamp);
                 ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
                 ArrayList<Corrida> corridasFiltradas = new ArrayList<Corrida>();
@@ -92,7 +92,9 @@ public class TextUI {
                     if(this.model1.getCorrida(c)!=null) corridasFiltradas.add(this.model1.getCorrida(c));
                 }
                 for(Corrida c : corridasFiltradas){
-                    c.simulaCorrida();
+                    System.out.println("Corrida vai ser simulada! ");
+                    c.simularCorrida();
+
                 }
                 System.out.println("Campeonato adicionado");
             } else {

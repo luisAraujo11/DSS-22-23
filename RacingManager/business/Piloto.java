@@ -80,7 +80,7 @@ public class Piloto implements Serializable
     }
 
 
-    public long tempoProximaVolta(Circuito c, int clima, int volta) {
+    public long tempoProximaVolta(Circuito c, Meteorologia meteo, int volta) {
         Carro carro = new Carro() {
             @Override
             public int compareTo(Carro o) {
@@ -100,15 +100,15 @@ public class Piloto implements Serializable
             if (volta < (c.getVoltas() / 2)) {
                 /* usa piloto 1*/
                 return (t_medio + ((carro.getCilindrada() / carro.getPotencia())) * 1000L) - fator_sorte
-                        + (clima * (t_chuva * 1000)) - fator_sorte_chuva;
+                        + ((meteo.getPrecipitacao()+meteo.getTemperatura()) * (t_chuva * 1000)) - fator_sorte_chuva;
             } else {
                 /*usa piloto 2*/
                 if (volta == (c.getVoltas() / 2)) {
                     return (t_medio + ((carro.getCilindrada() / carro.getPotencia())) * 1000L) - fator_sorte
-                            + (clima * (t_chuva * 1000)) - fator_sorte_chuva;
+                            + ((meteo.getPrecipitacao()+meteo.getTemperatura()) * (t_chuva * 1000)) - fator_sorte_chuva;
                 } else
                     return (t_medio + ((carro.getCilindrada() / carro.getPotencia())) * 1000L) - fator_sorte
-                            + (clima * (t_chuva  * 1000)) - fator_sorte_chuva;
+                            + ((meteo.getPrecipitacao()+meteo.getTemperatura()) * (t_chuva  * 1000)) - fator_sorte_chuva;
             }
         }
 

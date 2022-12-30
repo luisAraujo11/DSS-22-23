@@ -85,7 +85,7 @@ public class Corrida implements Serializable{
         this.dnf = dnf;
     }
 
-    public void simulaCorrida()
+    public void simularCorrida()
     {
         int voltas = this.circuito.getVoltas();
         long t_aux, t_volta;
@@ -111,9 +111,9 @@ public class Corrida implements Serializable{
                             if (c instanceof Hibrido) {
                                 Hibrido h = (Hibrido) p;
                                 int motor = h.getPotenciaMotorEletrico();
-                                t_volta = p.tempoProximaVolta(this.circuito, 0, i) - motor * 10L;
+                                t_volta = p.tempoProximaVolta(this.circuito, this.meteo, i) - motor * 10L;
                             } else
-                                t_volta = p.tempoProximaVolta(this.circuito, 0, i);
+                                t_volta = p.tempoProximaVolta(this.circuito, this.meteo, i);
                             p.setTempo(t_aux + t_volta);
                             //atualizar record
                             if (this.circuito.getRecord().getTempo() > t_volta) {

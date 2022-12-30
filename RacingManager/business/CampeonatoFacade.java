@@ -45,7 +45,7 @@ public class CampeonatoFacade implements ICampeonatoFacade{
 
 
     @Override
-    public boolean existeCampeonato(String nomeCamp){
+    public boolean validaCampeonato(String nomeCamp){
         return campeonatos.containsKey(nomeCamp);
     }
 

@@ -9,4 +9,6 @@ public interface ICorridaFacade {
     public boolean existeCorrida(String idCorrida);
 
     public Corrida getCorrida(Circuito cir);
+
+    public Collection<Corrida> getCorridas();
 }

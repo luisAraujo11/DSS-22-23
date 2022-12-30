@@ -3,8 +3,6 @@ package RacingManager.business;
 import RacingManager.database.CampeonatoDAO;
 import RacingManager.database.CorridaDAO;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import java.util.*;
 
@@ -26,6 +24,12 @@ public class CorridaFacade implements ICorridaFacade{
         }
         return result;
     }
+
+    @Override
+    public Collection<Corrida> getCorridas(){
+        return corridas.values();
+    }
+
     
     @Override
     public void adcionaCorrida(Corrida c){
