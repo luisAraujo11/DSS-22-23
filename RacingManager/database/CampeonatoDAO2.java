@@ -1,23 +1,23 @@
 package RacingManager.database;
 
-import RacingManager.business.*;
+import RacingManager.business.Campeonato;
+import RacingManager.database.DAOconfig;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import static java.util.stream.Collectors.toList;
 
-public class CampeonatoDAO implements Map<String, Campeonato> {
+import static java.util.stream.Collectors.*;
 
-    private static CampeonatoDAO singleton = null;
-    //private static CircuitoDAO singleton = null;
 
-    private CampeonatoDAO() { // TODO mudar o sql do campeonato
+public class CampeonatoDAO2 implements Map<String, Campeonato> {
+    private static CampeonatoDAO2 singleton = null;
+
+    private CampeonatoDAO2() {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
             String sql = "CREATE TABLE IF NOT EXISTS circuito (" +
@@ -35,6 +35,12 @@ public class CampeonatoDAO implements Map<String, Campeonato> {
                     "Tempo varchar(10) NOT NULL PRIMARY KEY," +
                     "Piloto varchar(10) DEFAULT NULL," +
                     "Carro varchar(10) NOT NULL)";
+            stm.executeUpdate(sql);
+            sql = "CREATE TABLE IF NOT EXISTS alunos (" +
+                    "Num varchar(10) NOT NULL PRIMARY KEY," +
+                    "Nome varchar(45) DEFAULT NULL," +
+                    "Email varchar(45) DEFAULT NULL," +
+                    "Turma varchar(10), foreign key(Turma) references turmas(id))";
             stm.executeUpdate(sql);
             sql= "CREATE TABLE IF NOT EXISTS record (" +
                     "Piloto varchar(45) NOT NULL PRIMARY KEY," +
@@ -60,13 +66,12 @@ public class CampeonatoDAO implements Map<String, Campeonato> {
                     "Precipitação int(4))";
             stm.executeUpdate(sql);
             stm.executeUpdate(sql);
-            stm.executeUpdate("INSERT INTO circuito VALUES ( 'Marhnaz', 12, 25,13,14,'Magyhnaz')");
-           // stm.executeUpdate("INSERT INTO gdu VALUES (1, 'Mahndaz','Mahfnaz')");
-            stm.executeUpdate("INSERT INTO record VALUES ('Madhnaz', 12.2 ,'Mahfnaz')");
-            stm.executeUpdate("INSERT INTO carro VALUES (2,'Mashnaz','Mahgnaz',6,8,,5,0,2)");
+          //  stm.executeUpdate("INSERT INTO circuito VALUES ( 'Mahnaz', 12, 25,13,14,'Ma5hnaz')");
+           // stm.executeUpdate("INSERT INTO campeonato VALUES (12)");
+           // stm.executeUpdate("INSERT INTO gdu VALUES ('Mahnaz', 'Mahnaz','Mahnaz')");
+            // stm.executeUpdate("INSERT INTO record VALUES ('Mahnaz', 12.2 ,'Mahnaz')");
+           // stm.executeUpdate("INSERT INTO carro VALUES (2,'Mahnaz','Mahnaz',6,8,,5,0,2)");
            // stm.executeUpdate("INSERT INTO carro VALUES (2,'Mahnaz','Mahnaz',6,8,,5,0, 12.2)");
-
-
 
         } catch (SQLException e) {
             // Erro a criar tabela...
@@ -74,17 +79,6 @@ public class CampeonatoDAO implements Map<String, Campeonato> {
             throw new NullPointerException(e.getMessage());
         }
     }
-
-
-    public static CampeonatoDAO getInstance() {
-        if (CampeonatoDAO.singleton == null) {
-            CampeonatoDAO.singleton = new CampeonatoDAO();
-        }
-        return CampeonatoDAO.singleton;
-    }
-
-
-    
 
     @Override
     public int size() {

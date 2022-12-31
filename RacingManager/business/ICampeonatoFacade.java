@@ -15,4 +15,6 @@ public interface ICampeonatoFacade {
     public Campeonato getCampeonato2(String nomeCamp);
 
     public ArrayList<Circuito> getCircuitos(Campeonato champ);
+
+    boolean validaCampeonato(String nomeCamp);
 }

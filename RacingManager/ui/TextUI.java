@@ -62,7 +62,7 @@ public class TextUI {
     }
 
     // Métodos auxiliares
-    private void addChamp() {
+    /*private void addChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
             System.out.println("Nome do campeonato: ");
@@ -78,7 +78,7 @@ public class TextUI {
             System.out.println(e.getMessage());
         }
     }
-
+ */
     private void startChamp() {
         //Scanner scin = new Scanner(System.in);
         try {

@@ -43,14 +43,20 @@ public class CampeonatoFacade implements ICampeonatoFacade{
         this.campeonatos.put(c.getNome(),c);
     }
 
-
     @Override
-    public boolean validaCampeonato(String nomeCamp){
-        return campeonatos.containsKey(nomeCamp);
+    public boolean existeCampeonato(String nomeCamp) {
+        return false;
     }
+
+
 
     public ArrayList<Circuito> getCircuitos(Campeonato champ){
         return champ.getCircuitos();
+    }
+
+    @Override
+    public boolean validaCampeonato(String nomeCamp) {
+        return false;
     }
 
 }
