@@ -23,7 +23,8 @@ public class CampeonatoFacade implements ICampeonatoFacade{
 
     @Override
     public Campeonato getCampeonato(String nome){
-        Campeonato result =null;
+        Campeonato result =new Campeonato();
+        result = null;
         Collection<Campeonato> camp;
         camp = getCampeonatos();
         for (Campeonato c: camp){
