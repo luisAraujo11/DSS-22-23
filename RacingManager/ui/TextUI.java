@@ -84,7 +84,7 @@ public class TextUI {
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
-            if (this.model.validaCampeonato(nomeCamp)) {
+            if (this.model.getCampeonato(nomeCamp)!=null) {
                 Campeonato champ= this.model.getCampeonato(nomeCamp);
                 ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
                 ArrayList<Corrida> corridasFiltradas = new ArrayList<Corrida>();

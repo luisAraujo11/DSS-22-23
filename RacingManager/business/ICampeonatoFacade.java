@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public interface ICampeonatoFacade {
     void adicionaCampeonato(Campeonato c);
 
-    boolean existeCampeonato(String nomeCamp);
+    boolean validaCampeonato(String nomeCamp);
 
     Collection<Campeonato> getCampeonatos();
 
@@ -15,6 +15,4 @@ public interface ICampeonatoFacade {
     public Campeonato getCampeonato2(String nomeCamp);
 
     public ArrayList<Circuito> getCircuitos(Campeonato champ);
-
-    boolean validaCampeonato(String nomeCamp);
 }
