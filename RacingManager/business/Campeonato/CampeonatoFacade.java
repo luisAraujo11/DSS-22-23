@@ -1,7 +1,7 @@
-package RacingManager.Campeonato;
+package RacingManager.business.Campeonato;
 
 import RacingManager.business.Circuito.Circuito;
-import RacingManager.database.CampeonatoDAO;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.ArrayList;

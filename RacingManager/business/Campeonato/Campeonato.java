@@ -1,4 +1,4 @@
-package RacingManager.Campeonato;
+package RacingManager.business.Campeonato;
 
 import RacingManager.business.Circuito.Circuito;
 

@@ -1,6 +1,5 @@
-package RacingManager.Campeonato;
+package RacingManager.business.Campeonato;
 
-import RacingManager.Campeonato.Campeonato;
 import RacingManager.business.Circuito.Circuito;
 
 import java.util.Collection;
