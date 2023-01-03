@@ -1,6 +1,6 @@
 package RacingManager.database;
 
-import RacingManager.business.Corrida;
+import RacingManager.business.Corrida.Corrida;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

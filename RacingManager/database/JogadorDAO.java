@@ -1,6 +1,6 @@
 package RacingManager.database;
 
-import RacingManager.business.Jogador;
+import RacingManager.business.Jogador.Jogador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

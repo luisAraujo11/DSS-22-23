@@ -6,6 +6,10 @@
  */
 package RacingManager.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DAOconfig {
 
     public static final String USERNAME = "root";
@@ -13,4 +17,12 @@ public class DAOconfig {
     private static final String DATABASE = "racingmanager";
     private static final String DRIVER = "jdbc:mysql";
     public static final String URL = DRIVER+"://localhost:3306/"+DATABASE;
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL + DATABASE, USERNAME, PASSWORD);
+    }
+    public static Connection getConnectionNoDatabase() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    }
+
 }

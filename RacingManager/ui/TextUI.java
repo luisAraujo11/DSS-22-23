@@ -6,10 +6,17 @@
  */
 package RacingManager.ui;
 
-import RacingManager.business.*;
+import RacingManager.Campeonato.Campeonato;
+import RacingManager.Campeonato.CampeonatoFacade;
+import RacingManager.Campeonato.ICampeonatoFacade;
+import RacingManager.business.Circuito.Circuito;
+import RacingManager.business.Corrida.Corrida;
+import RacingManager.business.Corrida.CorridaFacade;
+import RacingManager.business.Corrida.ICorridaFacade;
+import RacingManager.business.Jogador.IJogadorFacade;
+import RacingManager.business.Jogador.JogadorFacade;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -98,7 +105,7 @@ public class TextUI {
                 }
                 System.out.println("Campeonato adicionado");
             } else {
-                System.out.println("Esse número de turma já existe!");
+                System.out.println("Esse nome de Campeonato já existe!");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
