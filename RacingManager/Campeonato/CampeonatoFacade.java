@@ -23,19 +23,14 @@ public class CampeonatoFacade implements ICampeonatoFacade {
 
     @Override
     public Campeonato getCampeonato(String nome){
-        Campeonato result =null;
+        Campeonato result =new Campeonato();
+        result = null;
         Collection<Campeonato> camp;
         camp = getCampeonatos();
         for (Campeonato c: camp){
-            if(c.equals(nome)) result = c;
+            if(c.getNome().equals(nome)) result = c;
         }
         return result;
-    }
-
-    @Override
-    public Campeonato getCampeonato2(String nomeCamp){
-        if(campeonatos.containsKey(nomeCamp)) return campeonatos.get(nomeCamp);
-        else return null;
     }
 
     @Override
@@ -44,19 +39,8 @@ public class CampeonatoFacade implements ICampeonatoFacade {
     }
 
     @Override
-    public boolean existeCampeonato(String nomeCamp) {
-        return false;
-    }
-
-
-
     public ArrayList<Circuito> getCircuitos(Campeonato champ){
         return champ.getCircuitos();
-    }
-
-    @Override
-    public boolean validaCampeonato(String nomeCamp) {
-        return false;
     }
 
 }

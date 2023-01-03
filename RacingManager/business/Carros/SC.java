@@ -32,6 +32,7 @@ public class SC extends Carro
        Random rand=new Random();
        int x=rand.nextInt(73);
        Piloto p = new Piloto();
+       p= null;
        if(volta<totalvoltas/2)
            p = super.getEquipa().getPiloto1();
        else
