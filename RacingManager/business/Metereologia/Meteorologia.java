@@ -14,6 +14,8 @@ public class Meteorologia implements Serializable{
         this.temperatura = r.nextInt(30);
     }
 
+
+
     public Meteorologia(Meteorologia m) {
         this.precipitacao=m.getPrecipitacao();
         this.temperatura=m.getTemperatura();

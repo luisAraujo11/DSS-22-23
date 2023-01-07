@@ -215,9 +215,23 @@ public void verificaUltrapassagemPrem(Seccao sec) {
         return r;
     }
 
-    public Map<Piloto,Integer> atualizaPontuacaoGeral(){
-        return null;
+
+    public Map<Piloto,Integer> getLugares(){
+
+        Map<Piloto,Long> aux = new HashMap<>();
+        aux = listaClassificacao();
+
+        Map<Piloto,Integer> res = new HashMap<>();
+
+        for(Map.Entry<Piloto,Long> entry : aux.entrySet()){
+            int i =1;
+            res.put(entry.getKey(),i);
+            i++;
+        }
+        return res;
     }
+
+
 
 
     public void simularCorrida()

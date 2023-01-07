@@ -5,6 +5,7 @@ import RacingManager.business.Circuito.Circuito;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import RacingManager.business.Equipa.Piloto;
 /**
  * Write a description of class Campeonato here.
  *
@@ -28,22 +29,25 @@ public class Campeonato implements Serializable
 
     private String nome;
     private List<Circuito> circuitos;
+    private Map<Piloto,Integer> pontuacaoGeral;
 
     public Campeonato()
     {
         this.nome="";
         this.circuitos = new ArrayList<Circuito>();
+        this.pontuacaoGeral = new HashMap<Piloto,Integer>();
     }
 
     public Campeonato(String nomeCamp)
     {
         this.nome=nomeCamp;
         this.circuitos = new ArrayList<Circuito>();
+        this.pontuacaoGeral = new HashMap<Piloto, Integer>();
     }
 
     public Campeonato(String nome, List<Circuito> circuitos) {
         this.nome = nome;
-        ArrayList<Circuito> aux= new ArrayList<Circuito>();
+       List<Circuito> aux= new ArrayList<Circuito>();
         for(Circuito cir : circuitos)
         {
             aux.add(cir);
@@ -84,6 +88,29 @@ public class Campeonato implements Serializable
         }
         return aux;
     }
+    public Map<Piloto,Integer> getPontuacaoGeral(){
+
+        Map<Piloto,Integer> aux = new HashMap<>();
+        for(Map.Entry<Piloto, Integer> set : pontuacaoGeral.entrySet()){
+            aux.put(set.getKey(),set.getValue());
+        }
+        return aux;
+    }
+
+    public void setPontuacaoGeral(Map<Piloto,Integer> pontucao){
+        for(Map.Entry<Piloto, Integer> set : pontucao.entrySet()){
+            this.pontuacaoGeral.put(set.getKey(),set.getValue());
+        }
+    }
+
+    // public Map<Piloto,Boolean> getDnf() {
+    //
+    //        Map<Piloto,Boolean> dnfs= new HashMap<>();
+    //        for(Map.Entry<Piloto, Boolean> set : dnf.entrySet()){
+    //            dnfs.put(set.getKey(),set.getValue());
+    //        }
+    //        return dnfs;
+    //    }
 
     public void addCircuito(Circuito c)
     {

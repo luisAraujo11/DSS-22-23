@@ -3,12 +3,10 @@ package RacingManager.database;
 
 import RacingManager.business.Campeonato.Campeonato;
 import RacingManager.business.Campeonato.CampeonatoFacade;
+import RacingManager.business.Circuito.Circuito;
 
 import java.sql.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -20,8 +18,8 @@ public class CampeonatoDAO implements Map<String, Campeonato> {
         try (Connection conn = DAOconfig.getConnection();
              Statement stm = conn.createStatement();) {
             String sql = "CREATE TABLE IF NOT EXISTS Campeonatos (" +
-                    "Nome VARCHAR(255) DEFAULT NULL PRIMARY KEY)";
-            //stm.executeUpdate(sql);
+                    "Nome varchar(10) NOT NULL PRIMARY KEY)";
+            stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
             e.printStackTrace();
@@ -86,21 +84,52 @@ public class CampeonatoDAO implements Map<String, Campeonato> {
         return p.equals(get(p.getNome()));
     }
 
-    @Override
-    public Campeonato get(Object key) {
-        if (!(key instanceof Integer)) return null;
-        try (Connection conn = DAOconfig.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT Nome FROM Campeonatos WHERE Nome= ?;");
-        ) {
-            ps.setInt(1, (Integer) key);
-            try (ResultSet rs = ps.executeQuery();) {
 
+    public Campeonato get(Object key) {
+        Campeonato c = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM campeonatos WHERE Nome='"+key+"'")){
+                if (rs.next()) {  // A chave existe na tabela
+                    // Reconstruir a colecção de campeonatos
+                    c = new Campeonato(rs.getString("Nome"));
+                }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return c;
+
+    }
+
+
+    public Campeonato getAll() {
+        Campeonato c = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT * FROM campeonatos")){
+            if (rs.next()) {  // A chave existe na tabela
+                // Reconstruir a colecção de campeonatos
+                c = new Campeonato(rs.getString("Nome"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return c;
     }
+
+
+/*
+    public ArrayList<String> getCampeonatos(Statement stm) throws SQLException {
+        ArrayList<String> campeonatos = new ArrayList<>();
+        try (ResultSet rsa = stm.executeQuery("SELECT Nome FROM Campeonatos")) {
+            while(rsa.next()) {
+                campeonatos.add(rsa.getString("Nome"));
+            }
+        } // execepção é enviada a quem chama o método - este try serve para fechar o ResultSet automaticamente
+        return campeonatos;
+    }
+    
+*/
 
     @Override
     public Campeonato put(String key, Campeonato value) {

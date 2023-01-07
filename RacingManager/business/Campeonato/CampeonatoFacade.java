@@ -5,22 +5,31 @@ import RacingManager.database.CampeonatoDAO;
 
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class CampeonatoFacade implements ICampeonatoFacade {
     private Map<String, Campeonato> campeonatos;
 
-
     public CampeonatoFacade() throws SQLException {
         this.campeonatos = CampeonatoDAO.getInstance();
     }
 
-    @Override
-    public Collection <Campeonato> getCampeonatos(){
-        return campeonatos.values();
+    public CampeonatoFacade(String nomeCamp) throws SQLException {
+        this.campeonatos = CampeonatoDAO.getInstance();
     }
+/*
+    @Override
+    public ArrayList<String> getCampeonatos() {
+
+        ArrayList<String> aux = new ArrayList<>();
+        for (String c : aux){
+            aux = this.campeonatos.getAll();
+            }
+        return aux;
+        }*/
+
+
 
     @Override
     public Campeonato getCampeonato(String nome){
@@ -37,6 +46,11 @@ public class CampeonatoFacade implements ICampeonatoFacade {
     @Override
     public void adicionaCampeonato(Campeonato c){
         this.campeonatos.put(c.getNome(),c);
+    }
+
+    @Override
+    public Collection<Campeonato> getCampeonatos() {
+        return null;
     }
 
     @Override
