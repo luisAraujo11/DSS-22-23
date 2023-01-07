@@ -80,6 +80,8 @@ public class Circuito implements Serializable {
     public Record setRecord(Record r) {
         return r;
     }
+
+
 }
 /*public class Circuito implements Serializable {
 
