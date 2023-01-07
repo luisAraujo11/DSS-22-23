@@ -19,7 +19,7 @@ public class CircuitoDAO implements Map<String , Circuito> {
 
     }
 
-    private Map<String,Circuito> circuitos=Map.of(
+    private static Map<String,Circuito> circuitos=Map.of(
             "Nurburing",new Circuito("Nurburing",20,4, new ArrayList<SectoresCircuito>(Arrays.asList(
                     new SectoresCircuito(SectoresCircuito.CircuitSectionType.STRAIGHT, 0.75F),
                     new SectoresCircuito(SectoresCircuito.CircuitSectionType.CHICANE, 0.15F),
@@ -73,7 +73,9 @@ public class CircuitoDAO implements Map<String , Circuito> {
                     new SectoresCircuito(SectoresCircuito.CircuitSectionType.CHICANE,0.2F)
             )))
     );
-
+    public static List<Circuito> getCircuitos() {
+  return circuitos.values().stream().toList();
+    }
     @Override
     public int size() {
         return circuitos.size();
@@ -103,8 +105,6 @@ public class CircuitoDAO implements Map<String , Circuito> {
     public Circuito put(String key, Circuito value) {
         return null;
     }
-
-
 
 
     @Override

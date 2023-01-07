@@ -1,28 +1,13 @@
 package RacingManager.business.Campeonato;
 
 import RacingManager.business.Circuito.Circuito;
+import RacingManager.business.Equipa.Piloto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import RacingManager.business.Equipa.Piloto;
-/**
- * Write a description of class Campeonato here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-
-import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Comparator;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.io.Serializable;
+import java.util.Map;
 
 public class Campeonato implements Serializable
 {
@@ -34,7 +19,7 @@ public class Campeonato implements Serializable
     public Campeonato()
     {
         this.nome="";
-        this.circuitos = new ArrayList<Circuito>();
+        //this.circuitos = new ArravyList<Circuito>();
         this.pontuacaoGeral = new HashMap<Piloto,Integer>();
     }
 
@@ -117,9 +102,14 @@ public class Campeonato implements Serializable
         this.circuitos.add(c);
     }
 
+
     public Circuito getCircuito(int x)
     {
         return this.circuitos.get(x-1);
+    }
+
+    public boolean existeCorrida(Circuito cir){
+        return false;
     }
 
     public Campeonato clone(){

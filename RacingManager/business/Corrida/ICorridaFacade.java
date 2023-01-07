@@ -1,9 +1,8 @@
 package RacingManager.business.Corrida;
 
 import RacingManager.business.Circuito.Circuito;
-import RacingManager.business.Corrida.Corrida;
 
-import java.util.*;
+import java.util.Collection;
 
 public interface ICorridaFacade {
 

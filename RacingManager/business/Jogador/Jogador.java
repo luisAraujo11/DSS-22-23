@@ -27,6 +27,9 @@ public class Jogador implements Comparable<Jogador>,Serializable{
         this.carro = carro;
         this.piloto = piloto;
     }
+    public Jogador(String registo){
+        this.registo = registo;
+    }
 
     public Jogador(Jogador j){
         this.registo = j.getRegisto();

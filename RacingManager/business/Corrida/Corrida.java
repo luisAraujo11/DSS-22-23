@@ -3,12 +3,12 @@ package RacingManager.business.Corrida;
 import RacingManager.business.Carros.Carro;
 import RacingManager.business.Carros.Hibrido;
 import RacingManager.business.Circuito.Circuito;
-import RacingManager.business.Metereologia.Meteorologia;
 import RacingManager.business.Equipa.Piloto;
+import RacingManager.business.Metereologia.Meteorologia;
 import RacingManager.business.Record;
 
-import java.util.*;
 import java.io.Serializable;
+import java.util.*;
 
 public class Corrida implements Serializable{
 
@@ -16,7 +16,7 @@ public class Corrida implements Serializable{
     private String idCorrida;
     private Circuito circuito;
     private List<Piloto> listaPilotos;
-    private Map<Piloto, Boolean> dnf;
+    private Map<Piloto, Acontecimento> acontecimentos;
     private Meteorologia meteo;
     private Set<Piloto> resultados;
 
@@ -24,11 +24,11 @@ public class Corrida implements Serializable{
         this.idCorrida = null;
     }
 
-    public Corrida(String idCorrida,Circuito circuito,List<Piloto> listaPilotos,Map<Piloto, Boolean> dnf,Meteorologia meteo){
+    public Corrida(String idCorrida,Circuito circuito,List<Piloto> listaPilotos,Map<Piloto, Acontecimento> acontecimentos,Meteorologia meteo){
         this.idCorrida = idCorrida;
         this.circuito=circuito;
         this.listaPilotos=listaPilotos;
-        this.dnf=dnf;
+        this.acontecimentos=acontecimentos;
         this.meteo=meteo;
     }
 
@@ -36,7 +36,7 @@ public class Corrida implements Serializable{
         this.idCorrida = c.getIdCorrida();
         this.circuito=getCircuito();
         this.listaPilotos=getListaPilotos();
-        this.dnf=getDnf();
+        this.acontecimentos=getAcontecimentos();
         this.meteo=getMeteo();
     }
 
@@ -78,14 +78,7 @@ public class Corrida implements Serializable{
         this.listaPilotos = listaPilotos;
     }
 
-    public Map<Piloto,Boolean> getDnf() {
 
-        Map<Piloto,Boolean> dnfs= new HashMap<>();
-        for(Map.Entry<Piloto, Boolean> set : dnf.entrySet()){
-            dnfs.put(set.getKey(),set.getValue());
-        }
-        return dnfs;
-    }
 /* Protótipo de funções que faltam
     public void verificarUltrapassagem(Segmento seg) {
         for(Piloto p : listaPilotos){
@@ -171,8 +164,19 @@ public void verificaUltrapassagemPrem(Seccao sec) {
     }
 
 */
-    public void setDnf(Map<Piloto, Boolean> dnf) {
-        this.dnf = dnf;
+
+    public Map<Piloto,Acontecimento> getAcontecimentos () {
+
+        Map<Piloto,Acontecimento> aux = new HashMap<>();
+        for(Map.Entry<Piloto,Acontecimento> entry : acontecimentos.entrySet()){
+            aux.put(entry.getKey(),entry.getValue());
+        }
+        return aux;
+    }
+
+
+    public void setAcontecimentos(Map<Piloto, Acontecimento> a) {
+        this.acontecimentos =a;
     }
 
     public Map<Piloto,Long> listaClassificacao(){
@@ -190,6 +194,7 @@ public void verificaUltrapassagemPrem(Seccao sec) {
         sortedByValue.putAll(res);
 
         return res;
+
     }
 
     public Map<Piloto,Integer> getPontuacoes(){
@@ -215,6 +220,19 @@ public void verificaUltrapassagemPrem(Seccao sec) {
         return r;
     }
 
+    public Integer getPontuacao(Piloto p){
+
+        Map<Piloto,Integer> aux = new HashMap<>();
+        aux = getPontuacoes();
+
+        Integer res =0;
+
+        for(Map.Entry<Piloto,Integer> entry : aux.entrySet()){
+            if(entry.getKey()==p) res = entry.getValue();
+        }
+        return res;
+    }
+
 
     public Map<Piloto,Integer> getLugares(){
 
@@ -231,28 +249,52 @@ public void verificaUltrapassagemPrem(Seccao sec) {
         return res;
     }
 
+    public int verificaAcontecimentos(boolean dnf, boolean ultrapassagem){           //  3 se dnf e ultrapassagem verifica-se; 2 se dnf verificado e ultrapassagem nao ; 1 se ultrapssagem ; 0 se nenhuma; -1 se alguma coisa errada
 
+        int r = -1;
+        for(Map.Entry<Piloto,Acontecimento> entry : this.acontecimentos.entrySet()){
+            if(entry.getValue().getDnf() == dnf && entry.getValue().getUltrapassagem() == ultrapassagem) r= 3;
+            else if(entry.getValue().getDnf() == dnf && entry.getValue().getUltrapassagem() != ultrapassagem) r= 2;
+            else if (entry.getValue().getDnf() != dnf && entry.getValue().getUltrapassagem() == ultrapassagem) r= 1;
+            else return 0;
+        }
+        return r;
+    }
 
+    public ArrayList<Acontecimento> indicaAcontecimentos(){
+
+        ArrayList<Acontecimento> aux = new ArrayList<>();
+        for(Acontecimento a : this.acontecimentos.values()){
+            aux.add(a);
+        }
+        return aux;
+    }
+
+    public boolean finalCorrida(){
+        return this.resultados.isEmpty();
+    }
 
     public void simularCorrida()
     {
         int voltas = this.circuito.getVoltas();
         long t_aux, t_volta;
         ArrayList<Piloto> aux = new ArrayList<Piloto>();
-        Map<Piloto, Boolean> temp = new HashMap<>();
+        Map<Piloto, Acontecimento> temp = new HashMap<>();
         ArrayList<Carro> aux1 = new ArrayList<Carro>();
+        Acontecimento a = new Acontecimento();
         for(Piloto p : this.listaPilotos)
         {
             aux.add(p.clone());
         }
         for(int i=0; i<voltas; i++) {
             for(Piloto p : aux) {
-                if(!p.getDnf()) //verifica se o carro esta acidentado
+                if(!p.getAcontecimento().getDnf()) //verifica se o carro esta acidentado
                 {
                     if(p.DNF(i, voltas, this.meteo)) //verifica se o carro tem acidente na volta
                     {
-                        p.setDnf(true);
-                        temp.put(p.clone(),true);
+                        a.setDnf(true);
+                        p.setAcontecimento(a);
+                        temp.put(p.clone(),a);
                     }
                     else {
                         t_aux = p.getTempo(); //tempo feito ate ao momento
@@ -281,9 +323,9 @@ public void verificaUltrapassagemPrem(Seccao sec) {
             //this.primeiroVolta(i,aux); //metodo auxiliar para determinar o 1º a cada volta
         }
         for(Piloto p : aux) {
-            if(!p.getDnf()){ this.resultados.add(p); }
+            if(!p.getAcontecimento().getDnf()){ this.resultados.add(p); }
         }
-        this.dnf = temp;
+        this.acontecimentos = temp;
     }
 
 
