@@ -18,7 +18,7 @@ public class Corrida implements Serializable{
     private List<Piloto> listaPilotos;
     private Map<Piloto, Boolean> dnf;
     private Meteorologia meteo;
-    private Set<Piloto> resultados;
+    private ArrayList<Piloto> resultados;
 
     public Corrida(){
         this.idCorrida = null;
@@ -38,6 +38,7 @@ public class Corrida implements Serializable{
         this.listaPilotos=getListaPilotos();
         this.dnf=getDnf();
         this.meteo=getMeteo();
+        this.resultados = new ArrayList<>();
     }
 
     public Meteorologia getMeteo() {
@@ -59,6 +60,9 @@ public class Corrida implements Serializable{
     public Circuito getCircuito() {
         return circuito;
     }
+
+
+
 
     public void setCircuito(Circuito circuito) {
         this.circuito = circuito;
@@ -90,6 +94,51 @@ public class Corrida implements Serializable{
 
     public void setDnf(Map<Piloto, Boolean> dnf) {
         this.dnf = dnf;
+    }
+
+    public Map<Piloto,Long> listaClassificacao(){
+
+        ArrayList<Piloto> aux = new ArrayList<>();
+        for(Piloto p: this.resultados){
+            aux.add(p.clone());
+        }
+        Map<Piloto,Long> res = new HashMap<>();
+        for(Piloto p : aux){
+            res.put(p,p.getTempo());
+        }
+        Comparator<Piloto> valueComparator = (k1, k2) -> res.get(k1).compareTo(res.get(k2));
+        Map<Piloto, Long> sortedByValue = new TreeMap<>(valueComparator);
+        sortedByValue.putAll(res);
+
+        return res;
+    }
+
+    public Map<Piloto,Integer> getPontuacoes(){
+
+        Map<Piloto,Long> aux = new HashMap<>();
+        aux = listaClassificacao();
+
+        ArrayList<Piloto> res = new ArrayList<>();
+        for(Map.Entry<Piloto,Long> entry : aux.entrySet()){
+            res.add(entry.getKey());
+        }
+
+        Map<Piloto,Integer> r = new HashMap<>();
+        for(Piloto p : res){
+            int i = 1;
+            if (i==1) r.put(p,12);
+            else if (i==2) r.put(p,10);
+            else if(i==3) r.put(p,8);
+            else if (i==4) r.put(p,7);
+            else r.put(p,0);
+            i++;
+        }
+        return r;
+    }
+
+    public Map<Piloto,Integer> atualizaPontuacaoGeral(){
+
+        return null;
     }
 
     public void simularCorrida()

@@ -1,7 +1,9 @@
 package RacingManager.business.Campeonato;
 
 import RacingManager.business.Circuito.Circuito;
+import RacingManager.database.CampeonatoDAO;
 
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -11,10 +13,9 @@ public class CampeonatoFacade implements ICampeonatoFacade {
     private Map<String, Campeonato> campeonatos;
 
 
-    public CampeonatoFacade(){
-        this.campeonatos = new HashMap<>();
+    public CampeonatoFacade() throws SQLException {
+        this.campeonatos = CampeonatoDAO.getInstance();
     }
-
 
     @Override
     public Collection <Campeonato> getCampeonatos(){

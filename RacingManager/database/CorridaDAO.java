@@ -16,7 +16,7 @@ public class CorridaDAO implements Map<String, Corrida> {
     private CorridaDAO() { // TODO mudar o sql do corrida
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS campeonato (" +
+            String sql = "CREATE TABLE IF NOT EXISTS Corrida (" +
                     "registo varchar(10) NOT NULL PRIMARY KEY," +
                     "pontuação int(4) DEFAULT 0," +
                     "CarroId varchar(10))";

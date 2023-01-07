@@ -6,18 +6,23 @@
  */
 package RacingManager.ui;
 
-import RacingManager.Campeonato.Campeonato;
-import RacingManager.Campeonato.CampeonatoFacade;
-import RacingManager.Campeonato.ICampeonatoFacade;
+import RacingManager.business.Campeonato.Campeonato;
+import RacingManager.business.Campeonato.CampeonatoFacade;
+import RacingManager.business.Campeonato.ICampeonatoFacade;
 import RacingManager.business.Circuito.Circuito;
 import RacingManager.business.Corrida.Corrida;
 import RacingManager.business.Corrida.CorridaFacade;
 import RacingManager.business.Corrida.ICorridaFacade;
 import RacingManager.business.Jogador.IJogadorFacade;
 import RacingManager.business.Jogador.JogadorFacade;
+import RacingManager.business.Equipa.Piloto;
 
+
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.*;
 
 /**
  * Exemplo de interface em modo texto.
@@ -42,16 +47,16 @@ public class TextUI {
      *
      * Cria os menus e a camada de negócio.
      */
-    public TextUI() {
+    public TextUI() throws SQLException {
         // Criar o menu
         this.menu = new Menu(new String[]{
-                //"Adicionar um campeonato",
+                "Adicionar um campeonato",
                 "Começar um campeonato",
                 "Listar Campeonatos"
         });
-        //this.menu.setHandler(1, this::addChamp);
-        this.menu.setHandler(1, this::startChamp);
-        this.menu.setHandler(2, this::ListChamp);
+        this.menu.setHandler(1, this::addChamp);
+        this.menu.setHandler(2, this::startChamp);
+        this.menu.setHandler(3, this::ListChamp);
 
         this.model = new CampeonatoFacade();
         this.model1 = new CorridaFacade();
@@ -69,12 +74,12 @@ public class TextUI {
     }
 
     // Métodos auxiliares
-    /*private void addChamp() {
+    private void addChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
-            if (!this.model.validaCampeonato(nomeCamp)) {
+            if (this.model.getCampeonato(nomeCamp)==null) {
                 this.model.adicionaCampeonato(new Campeonato(nomeCamp));
                 System.out.println("Campeonato adicionado");
             } else {
@@ -85,7 +90,7 @@ public class TextUI {
             System.out.println(e.getMessage());
         }
     }
- */
+
     private void startChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
@@ -102,10 +107,22 @@ public class TextUI {
                     System.out.println("Corrida vai ser simulada! ");
                     c.simularCorrida();
 
+                    Map<Piloto,Long> aux = new HashMap<>();
+                    aux = c.listaClassificacao();
+
+                    for(Map.Entry<Piloto,Long> entry : aux.entrySet()){
+                        int i =1;
+                        Piloto p = entry.getKey();
+                        Long value = entry.getValue();
+                        System.out.println( i+ "-" + p + "-" + value + "min");
+                        i++;
+                    }
+
                 }
+
                 System.out.println("Campeonato adicionado");
             } else {
-                System.out.println("Esse nome de Campeonato já existe!");
+                System.out.println("Nao existe esse Campeonato");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

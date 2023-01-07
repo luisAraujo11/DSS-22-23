@@ -5,6 +5,23 @@ import RacingManager.business.Circuito.Circuito;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Write a description of class Campeonato here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.io.Serializable;
 
 public class Campeonato implements Serializable
 {
