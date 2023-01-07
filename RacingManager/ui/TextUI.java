@@ -91,36 +91,127 @@ public class TextUI {
         }
     }
 
+    private void simulaFacade(String nomeCamp) throws SQLException {
+
+        this.menu = new Menu(new String[]{
+                "Simular Próxima Corrida",
+                "Listar Classificações Geral",
+                "Simular todas as corridas",
+                "Mostar Corridas"
+        });
+        this.menu.setHandler(1, () -> this.simulaUma(nomeCamp));
+        this.menu.setHandler(2, () -> this.listaGeral(nomeCamp));
+        this.menu.setHandler(3, () -> this.simulaTodas(nomeCamp));
+
+        scin = new Scanner(System.in);
+
+        this.model = new CampeonatoFacade(nomeCamp);
+
+    }
+
+    private void simulaUma(String nomeCamp){
+
+        Campeonato champ= this.model.getCampeonato(nomeCamp);
+        ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
+        ArrayList<Corrida> corridasFiltradas = new ArrayList<>();
+
+        for(Circuito c : circuitos){
+            if(this.model1.getCorrida(c)!=null) corridasFiltradas.add(this.model1.getCorrida(c));
+        }
+
+        for(Corrida c : corridasFiltradas){
+            int i=0;
+            System.out.println("Corrida vai ser simulada! ");
+            if(c.listaClassificacao().isEmpty()) {
+                c.simularCorrida();
+
+                Map<Piloto,Integer> aux = new HashMap<>();
+                aux = c.getLugares();
+
+                for(Map.Entry<Piloto,Integer> entry : aux.entrySet()){
+                    Piloto p = entry.getKey();
+                    Integer value = entry.getValue();
+                    System.out.println( value + "-" + p);
+                }
+                i++;
+            }
+            atualizaPontuacaoGeral(nomeCamp,c);
+            if(i==1) break;
+        }
+    }
+
+    private void atualizaPontuacaoGeral(String nomeCamp,Corrida c){
+
+        Map<Piloto,Integer> auxC = new HashMap<>();
+        auxC = c.getPontuacoes();
+
+        Campeonato champ= this.model.getCampeonato(nomeCamp);
+
+        Map<Piloto,Integer> auxChamp = new HashMap<>();
+        auxChamp = champ.getPontuacaoGeral();
+
+
+        for(Map.Entry<Piloto, Integer> setC : auxC.entrySet()){
+            for(Map.Entry<Piloto, Integer> setChamp : auxChamp.entrySet()){
+                if (setChamp.getKey() == null && setChamp.getValue() == null){
+                    auxChamp.put(setC.getKey(), setC.getValue());
+                }
+                else if(setC.getKey()==setChamp.getKey()){
+                    setChamp.setValue(setChamp.getValue() + setC.getValue());
+                }
+            }
+        }
+        champ.setPontuacaoGeral(auxChamp);
+    }
+
+    private void simulaTodas(String nomeCamp){
+
+        Campeonato champ= this.model.getCampeonato(nomeCamp);
+        ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
+        ArrayList<Corrida> corridasFiltradas = new ArrayList<>();
+
+        for(Circuito c : circuitos){
+            if(this.model1.getCorrida(c)!=null) corridasFiltradas.add(this.model1.getCorrida(c));
+        }
+
+        for(Corrida c : corridasFiltradas){
+            System.out.println("Corrida vai ser simulada! ");
+            c.simularCorrida();
+
+            Map<Piloto,Integer> aux = new HashMap<>();
+            aux = c.getLugares();
+
+            for(Map.Entry<Piloto,Integer> entry : aux.entrySet()){
+                Piloto p = entry.getKey();
+                Integer value = entry.getValue();
+                System.out.println( value + "-" + p);
+            }
+            atualizaPontuacaoGeral(nomeCamp,c);
+        }
+    }
+
+
+    private void listaGeral(String nomeCamp){
+
+        Campeonato champ= this.model.getCampeonato(nomeCamp);
+
+        Map<Piloto,Integer> auxChamp = new HashMap<>();
+        auxChamp = champ.getPontuacaoGeral();
+
+        for(Map.Entry<Piloto,Integer> entry : auxChamp.entrySet()){
+            Piloto p = entry.getKey();
+            Integer points = entry.getValue();
+            System.out.println(p + "-"+points);
+        }
+    }
+
     private void startChamp() {
         //Scanner scin = new Scanner(System.in);
         try {
             System.out.println("Nome do campeonato: ");
             String nomeCamp = scin.nextLine();
             if (this.model.getCampeonato(nomeCamp)!=null) {
-                Campeonato champ= this.model.getCampeonato(nomeCamp);
-                ArrayList<Circuito> circuitos = this.model.getCircuitos(champ);
-                ArrayList<Corrida> corridasFiltradas = new ArrayList<Corrida>();
-                for(Circuito c : circuitos){
-                    if(this.model1.getCorrida(c)!=null) corridasFiltradas.add(this.model1.getCorrida(c));
-                }
-                for(Corrida c : corridasFiltradas){
-                    System.out.println("Corrida vai ser simulada! ");
-                    c.simularCorrida();
-
-                    Map<Piloto,Long> aux = new HashMap<>();
-                    aux = c.listaClassificacao();
-
-                    for(Map.Entry<Piloto,Long> entry : aux.entrySet()){
-                        int i =1;
-                        Piloto p = entry.getKey();
-                        Long value = entry.getValue();
-                        System.out.println( i+ "-" + p + "-" + value + "min");
-                        i++;
-                    }
-
-                }
-
-                System.out.println("Campeonato adicionado");
+                simulaFacade(nomeCamp);
             } else {
                 System.out.println("Nao existe esse Campeonato");
             }
