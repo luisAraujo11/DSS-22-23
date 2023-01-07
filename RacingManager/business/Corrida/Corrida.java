@@ -18,7 +18,7 @@ public class Corrida implements Serializable{
     private List<Piloto> listaPilotos;
     private Map<Piloto, Boolean> dnf;
     private Meteorologia meteo;
-    private ArrayList<Piloto> resultados;
+    private Set<Piloto> resultados;
 
     public Corrida(){
         this.idCorrida = null;
@@ -38,7 +38,6 @@ public class Corrida implements Serializable{
         this.listaPilotos=getListaPilotos();
         this.dnf=getDnf();
         this.meteo=getMeteo();
-        this.resultados = new ArrayList<>();
     }
 
     public Meteorologia getMeteo() {
@@ -60,9 +59,6 @@ public class Corrida implements Serializable{
     public Circuito getCircuito() {
         return circuito;
     }
-
-
-
 
     public void setCircuito(Circuito circuito) {
         this.circuito = circuito;
@@ -90,56 +86,97 @@ public class Corrida implements Serializable{
         }
         return dnfs;
     }
+/* Protótipo de funções que faltam
+    public void verificarUltrapassagem(Segmento seg) {
+        for(Piloto p : listaPilotos){
+            if (!this.getDnf().containsKey(p))//se o participante ainda se mantiver em corrida
+            {
+                Carro carro = p.getCarrp();
+                Piloto piloto = p.getpiloto();
+                int posicao = p.getPosicao();
+                int gdu = sec.getGDU();
+                if(gdu != 3 && posicao>1){
+                    Boolean tenta = tentaUltrapassagem(carro, piloto, clima, gdu);
+                    if(tenta){
+                        avancaUm(p);
+                    }else{
+                        verificaCrash(p);
+                    }
+                }else{
+                    verificaCrash(p);
+                }
+            }
+        }
+        Collections.sort(this.getParticipante(), new StockComparator());
+    }
+
+    public boolean tentaUltrapassagem(Carro carro, Piloto piloto, int clima, int gdu) {
+        float probInicial = 1;
+        estadoMotor estado = carro.getEstado();
+        float agressividade = piloto.getAgressividade();
+        Random random = new Random();
+        float limite = random.nextFloat();
+        if (clima == 1)// caso esteja a chover prob de ultrapassar diminui
+            probInicial -= 0.05;
+        if(gdu == 5){//caso o GDU seja dificiil
+            probInicial -=0.1;
+        }
+        probInicial += -0.05 + (0.1*agressividade);
+        switch(estado){
+            case CONSERVADOR:
+                probInicial -= 0.05;
+                break;
+            case AGRESSIVO:
+                probInicial += 0.05;
+                break;
+            default:
+                break;
+        }
+        if(limite>probInicial)
+            return true;
+        else
+            return false;
+    }
+public void verificaUltrapassagemPrem(Seccao sec) {
+		int index = 0;
+		for(Participante p : participantes){
+			if (!this.getDNF().containsKey(p)){//se o participante ainda estiver na corrida
+				Carro carro = p.getCarro();
+				Piloto piloto = p.getpiloto();
+				int posicao = p.getPosicao();
+				int gdu = sec.getGDU(); //grau de dificuldade da seccao
+				boolean inTime = inTime(p,index); //verifica se o utilizador está perto o suficiente para tentar a ultrapassagem
+				if(gdu != 3 && posicao>1 && inTime){
+					Boolean ultrapassou = tentaUltrapassagem(carro, piloto, clima, gdu);//verifica se o part foi capaz de ultrapassar o carrro a sua frente
+					if(ultrapassou){
+						avancaUm(p);//participante avança uma posiçao
+					}else{
+						verificaCrash(p);//verifica se o participante teve um crash nessa seccao
+					}
+				}else{//casso n seja possivel fazer a ultrapassagem verifica se o participante se despistou ou nao
+					verificaCrash(p);
+				}
+				index++;//index para saber a posiçao da lista ordenada de participantes
+			}
+		}
+	}
 
 
+	public String printResultados() {
+        String str = "";
+        for (Piloto part : this.listaPilotos){
+            str += part.getPosicao() + "º: " + part.getUtilizador().getUser() + "\n";
+        }
+        return str;
+    }
+
+*/
     public void setDnf(Map<Piloto, Boolean> dnf) {
         this.dnf = dnf;
     }
 
-    public Map<Piloto,Long> listaClassificacao(){
 
-        ArrayList<Piloto> aux = new ArrayList<>();
-        for(Piloto p: this.resultados){
-            aux.add(p.clone());
-        }
-        Map<Piloto,Long> res = new HashMap<>();
-        for(Piloto p : aux){
-            res.put(p,p.getTempo());
-        }
-        Comparator<Piloto> valueComparator = (k1, k2) -> res.get(k1).compareTo(res.get(k2));
-        Map<Piloto, Long> sortedByValue = new TreeMap<>(valueComparator);
-        sortedByValue.putAll(res);
 
-        return res;
-    }
-
-    public Map<Piloto,Integer> getPontuacoes(){
-
-        Map<Piloto,Long> aux = new HashMap<>();
-        aux = listaClassificacao();
-
-        ArrayList<Piloto> res = new ArrayList<>();
-        for(Map.Entry<Piloto,Long> entry : aux.entrySet()){
-            res.add(entry.getKey());
-        }
-
-        Map<Piloto,Integer> r = new HashMap<>();
-        for(Piloto p : res){
-            int i = 1;
-            if (i==1) r.put(p,12);
-            else if (i==2) r.put(p,10);
-            else if(i==3) r.put(p,8);
-            else if (i==4) r.put(p,7);
-            else r.put(p,0);
-            i++;
-        }
-        return r;
-    }
-
-    public Map<Piloto,Integer> atualizaPontuacaoGeral(){
-
-        return null;
-    }
 
     public void simularCorrida()
     {
