@@ -17,7 +17,7 @@ import java.io.Serializable;
      private float fiabilidade;
      private Class classe;
      private float pac;
-     private TipoPneu pneus;
+     private Pneu pneus;
      private Equipa equipa;
      private float downforce;
 
@@ -44,12 +44,12 @@ import java.io.Serializable;
          this.fiabilidade = 0;
          this.classe=null;
          this.pac = 0;
-         this.pneus = TipoPneu.NULL;
+         this.pneus = null;
          this.downforce = 0;
          this.equipa=new Equipa();
      }
      
-     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac,Equipa e, TipoPneu pneus, float a_downforce)
+     public Carro(String idCarro, String marca, String modelo, String modoMotor, int cilindrada, int potencia,boolean serHibrido, float fiabilidade,Class classe, float pac,Equipa e, Pneu pneus, float a_downforce)
      {
          this.idCarro= idCarro;
          this.marca = marca;
@@ -139,11 +139,11 @@ import java.io.Serializable;
          return this.fiabilidade;
      }
 
-     public void setPneus(TipoPneu pneus) {
+     public void setPneus(Pneu pneus) {
         this.pneus = pneus;
     }
 
-     public TipoPneu getPneus() {
+     public Pneu getPneus() {
         return this.pneus;
     }
 

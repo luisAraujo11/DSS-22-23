@@ -58,6 +58,7 @@ public class Menu {
         this.handlers = new ArrayList<>();
     }
 
+
     /**
      * Constructor para objectos da classe Menu.
      *

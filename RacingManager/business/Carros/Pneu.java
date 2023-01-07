@@ -1,35 +1,33 @@
-package org.example.business.cars;
-
+package RacingManager.business.Carros;
 
 import java.util.Objects;
 
 public class Pneu{
 
-	public static enum TyreType {
+	public static enum TipoPneu {
 		SOFT,
 		MEDIUM,
 		HARD,
 		INTERMEDIATE,
 		WET
 	}
-	private TyreType type;
+	private TipoPneu type;
 
-	public TyreType getTipo() {return type;}
+	public TipoPneu getTipo() {return type;}
 
-	private boolean isPunctured;
 
 	@Override
 	public Pneu clone() {
 		return new Pneu(this.getTipo());
 	}
 
-	public void setTipo(TyreType type) {this.type = type;}
+	public void setTipo(TipoPneu type) {this.type = type;}
 
-	public Pneu (TyreType t){
+	public Pneu (TipoPneu t){
 		type=t;
 	}
 
-	public double getTyreWearStep() {
+	public double getTipoPneu() {
 		switch(this.type) {
 			case SOFT:
 				return 1.0;
@@ -46,15 +44,9 @@ public class Pneu{
 		}
 	}
 
-	public boolean isPunctured() {
-		return this.isPunctured;
-	}
 
-	public void setPuncture(boolean puncture) {
-		this.isPunctured = puncture;
-	}
 	public boolean isWet() {
-		return type == TyreType.WET || type == TyreType.INTERMEDIATE;
+		return type == TipoPneu.WET || type == TipoPneu.INTERMEDIATE;
 	}
 
 	@Override

@@ -47,8 +47,6 @@ public class Meteorologia implements Serializable{
 
 
 
-
-
     public String toString()     
      {
          StringBuilder sb = new StringBuilder();

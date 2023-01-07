@@ -81,6 +81,9 @@ public class Circuito implements Serializable {
         return r;
     }
 
+    public String toString() {
+        return nome;
+    }
 
 }
 /*public class Circuito implements Serializable {

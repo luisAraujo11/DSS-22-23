@@ -2,6 +2,7 @@ package RacingManager.business.Equipa;
 
 import RacingManager.business.Carros.Carro;
 import RacingManager.business.Circuito.Circuito;
+import RacingManager.business.Corrida.Acontecimento;
 import RacingManager.business.Metereologia.Meteorologia;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ public class Piloto implements Serializable
 {
     //Variaveis de instancia
     private String nome;
-    private boolean dnf;
+    private Acontecimento acontecimento;
     private float cts;
     private float sva;
     private long tempo;
@@ -25,9 +26,9 @@ public class Piloto implements Serializable
         this.tempo = 0;
     }
 
-    public Piloto(String nome,boolean dnf, float cts, float sva, long tempo, Piloto p1, Piloto p2) {
+    public Piloto(String nome,Acontecimento acontecimento, float cts, float sva, long tempo, Piloto p1, Piloto p2) {
         this.nome = nome;
-        this.dnf=dnf;
+        this.acontecimento=acontecimento;
         this.cts = cts;
         this.sva = sva;
         this.tempo = tempo;
@@ -36,28 +37,30 @@ public class Piloto implements Serializable
     public Piloto(Piloto p)
     {
         this.nome = p.getNome();
-        this.dnf=p.getDnf();
+        this.acontecimento=p.getAcontecimento();
         this.cts = p.getCts();
         this.sva = p.getSva();
         this.tempo = p.getTempo();
     }
 
 
-    public boolean getDnf() {
-        return this.dnf;
-    }
-
     public long getTempo() {
         return tempo;
+    }
+
+
+    public Acontecimento getAcontecimento(){
+        return this.acontecimento;
+    }
+
+    public void setAcontecimento(Acontecimento acon){
+        this.acontecimento =acon;
     }
 
     public void setTempo(long tempo) {
         this.tempo = tempo;
     }
 
-    public void setDnf(boolean dnf) {
-        this.dnf = dnf;
-    }
 
     public String getNome() {
         return this.nome;
@@ -121,7 +124,7 @@ public class Piloto implements Serializable
     public String toString()
     {
         String sb = "\nNome: " + this.nome +
-                "\nDNF " + this.dnf +
+                "\nAcontecimento " + this.acontecimento +
                 "\tCTS: " + this.cts +
                 "\tSVA: " + this.sva;
         return sb;
@@ -139,7 +142,7 @@ public class Piloto implements Serializable
         
         Piloto p = (Piloto) o;
         return (this.nome.equals(p.getNome()) &&
-                this.dnf== p.getDnf() && 
+                this.acontecimento== p.getAcontecimento() &&
                 this.cts==p.getCts() &&
                 this.sva==p.getSva());
     }

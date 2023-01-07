@@ -13,16 +13,15 @@ import RacingManager.business.Circuito.Circuito;
 import RacingManager.business.Corrida.Corrida;
 import RacingManager.business.Corrida.CorridaFacade;
 import RacingManager.business.Corrida.ICorridaFacade;
+import RacingManager.business.Equipa.Piloto;
 import RacingManager.business.Jogador.IJogadorFacade;
 import RacingManager.business.Jogador.JogadorFacade;
-import RacingManager.business.Equipa.Piloto;
-
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.*;
 
 /**
  * Exemplo de interface em modo texto.
@@ -52,17 +51,36 @@ public class TextUI {
         this.menu = new Menu(new String[]{
                 "Adicionar um campeonato",
                 "Começar um campeonato",
-                "Listar Campeonatos"
+                "Listar Campeonatos",
+                "Mostrar Jogadores"
         });
+
+        Menu ComeçarCampeonatoSubMenu = new Menu(new String[]{
+                "Simular Corrida",
+                "Listar Classificação Geral",
+                "Simular todas as corridas"
+        });
+
+        ComeçarCampeonatoSubMenu.setHandler(1, () -> this.simulaUma(escolherChamp()));
+        ComeçarCampeonatoSubMenu.setHandler(2, () -> this.listaGeral(escolherChamp()));
+        ComeçarCampeonatoSubMenu.setHandler(3, () -> this.simulaTodas(escolherChamp()));
+
         this.menu.setHandler(1, this::addChamp);
-        this.menu.setHandler(2, this::startChamp);
+        this.menu.setHandler(2, () -> ComeçarCampeonatoSubMenu.run());
         this.menu.setHandler(3, this::ListChamp);
+        this.menu.setHandler(4, this::ListJogadores);
+
 
         this.model = new CampeonatoFacade();
         this.model1 = new CorridaFacade();
         this.model2 = new JogadorFacade();
 
+
+
+
+
         scin = new Scanner(System.in);
+
     }
 
     /**
@@ -70,7 +88,15 @@ public class TextUI {
      */
     public void run() {
         this.menu.run();
+        this.model2.JogadorClear(); //TODO ver
         System.out.println("Até breve!...");
+    }
+
+
+    private String escolherChamp(){
+        System.out.println("Nome do campeonato: ");
+        String nomeCamp = scin.nextLine();
+        return nomeCamp;
     }
 
     // Métodos auxiliares
@@ -91,23 +117,6 @@ public class TextUI {
         }
     }
 
-    private void simulaFacade(String nomeCamp) throws SQLException {
-
-        this.menu = new Menu(new String[]{
-                "Simular Próxima Corrida",
-                "Listar Classificações Geral",
-                "Simular todas as corridas",
-                "Mostar Corridas"
-        });
-        this.menu.setHandler(1, () -> this.simulaUma(nomeCamp));
-        this.menu.setHandler(2, () -> this.listaGeral(nomeCamp));
-        this.menu.setHandler(3, () -> this.simulaTodas(nomeCamp));
-
-        scin = new Scanner(System.in);
-
-        this.model = new CampeonatoFacade(nomeCamp);
-
-    }
 
     private void simulaUma(String nomeCamp){
 
@@ -188,6 +197,7 @@ public class TextUI {
             }
             atualizaPontuacaoGeral(nomeCamp,c);
         }
+        listaGeral(nomeCamp);
     }
 
 
@@ -205,27 +215,26 @@ public class TextUI {
         }
     }
 
-    private void startChamp() {
-        //Scanner scin = new Scanner(System.in);
-        try {
-            System.out.println("Nome do campeonato: ");
-            String nomeCamp = scin.nextLine();
-            if (this.model.getCampeonato(nomeCamp)!=null) {
-                simulaFacade(nomeCamp);
-            } else {
-                System.out.println("Nao existe esse Campeonato");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     private void ListChamp() {
         try {
+            //System.out.println("Nome do campeonato: ");
+            //String nomeCamp = scin.nextLine();
             System.out.println(this.model.getCampeonatos().toString());
         }
         catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
     }
+    private void ListJogadores() {
+        try {
+            //System.out.println("Nome do campeonato: ");
+            //String nomeCamp = scin.nextLine();
+            System.out.println(this.model2.getJogadores().toString());
+        }
+        catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
